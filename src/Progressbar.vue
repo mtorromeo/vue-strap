@@ -13,8 +13,6 @@
 </template>
 
 <script>
-    import coerceBoolean from './utils/coerceBoolean.js'
-
     export default {
         props: {
             now: {
@@ -23,7 +21,6 @@
             },
             label: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: false
             },
             type: {
@@ -31,12 +28,10 @@
             },
             striped: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: false
             },
             animated: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: false
             }
         }

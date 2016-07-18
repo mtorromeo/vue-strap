@@ -14,7 +14,6 @@
 
 <script>
     import callAjax from './utils/callAjax.js'
-    import coerceBoolean from './utils/coerceBoolean.js'
 
     const typeahead = {
         created() {
@@ -47,12 +46,10 @@
             },
             matchCase: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: false
             },
             matchStart: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: false
             },
             onHit: {

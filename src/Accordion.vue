@@ -5,13 +5,10 @@
 </template>
 
 <script>
-    import coerceBoolean from './utils/coerceBoolean.js'
-
     export default {
         props: {
             oneAtATime: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: false
             }
         },

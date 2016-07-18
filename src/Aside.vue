@@ -24,13 +24,11 @@
 <script>
     import EventListener from './utils/EventListener.js'
     import getScrollBarWidth from './utils/getScrollBarWidth.js'
-    import coerceBoolean from './utils/coerceBoolean.js'
 
     export default {
         props: {
             show: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 require: true,
                 twoWay: true
             },

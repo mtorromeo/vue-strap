@@ -19,13 +19,10 @@
 </template>
 
 <script>
-    import coerceBoolean from './utils/coerceBoolean.js'
-
     export default {
         props: {
             isOpen: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: false
             },
             header: {

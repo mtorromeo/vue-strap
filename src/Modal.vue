@@ -1,8 +1,8 @@
 <template>
     <div role="dialog" v-bind:class="{
-    'modal':true,
-    'fade':effect === 'fade',
-    'zoom':effect === 'zoom'
+        'modal':true,
+        'fade':effect === 'fade',
+        'zoom':effect === 'zoom'
     }">
         <div v-bind:class="{'modal-dialog':true,'modal-lg':large,'modal-sm':small}" role="document" v-bind:style="{width: optionalWidth}">
             <div class="modal-content">
@@ -33,7 +33,6 @@
 <script>
     import getScrollBarWidth from './utils/getScrollBarWidth.js'
     import EventListener from './utils/EventListener.js'
-    import coerceBoolean from './utils/coerceBoolean.js'
 
     export default {
         props: {
@@ -52,7 +51,6 @@
             show: {
                 require: true,
                 type: Boolean,
-                coerce: coerceBoolean,
                 twoWay: true
             },
             width: {
@@ -68,17 +66,14 @@
             },
             backdrop: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: true
             },
             large: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: false
             },
             small: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: false
             }
         },

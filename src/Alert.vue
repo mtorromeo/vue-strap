@@ -16,8 +16,6 @@
 </template>
 
 <script>
-    import coerceBoolean from './utils/coerceBoolean.js'
-
     export default {
         props: {
             type: {
@@ -25,12 +23,10 @@
             },
             dismissable: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: false,
             },
             show: {
                 type: Boolean,
-                coerce: coerceBoolean,
                 default: true,
                 twoWay: true
             },
