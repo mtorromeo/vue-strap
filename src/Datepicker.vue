@@ -1,30 +1,16 @@
-<style>
-    input.datepicker-input.with-reset-button {
-        padding-right: 25px;
-    }
-
-    div.datepicker> button.close {
-        position: absolute;
-        top: calc(50% - 13px);
-        right: 10px;
-    }
-
-    div.datepicker> button.close {
-        outline: none;
-        z-index: 2;
-    }
-
-    div.datepicker> button.close:focus {
-        opacity: .2;
-    }
-</style>
-
 <template>
     <div class="datepicker">
-        <input :tabindex="tabindex" class="form-control datepicker-input" :class="{'with-reset-button': showResetButton}" type="text" v-bind:style="{width:width}" @click="inputClick" v-model="value" />
-        <button v-if="showResetButton" type="button" class="close" @click="value = ''">
-            <span>&times;</span>
-        </button>
+        <div :class="{
+            'input-group': showResetButton || showPickerButton
+        }">
+            <input :tabindex="tabindex" class="form-control datepicker-input" :class="{'with-reset-button': showResetButton}" type="text" @click="show" v-model="value">
+            <a v-if="showResetButton" class="input-group-addon close" @click.prevent="value = ''">
+                &times;
+            </a>
+            <a v-if="showPickerButton" class="input-group-addon" @click.prevent="show" href="javascript:void(0)">
+                <i class="glyphicon glyphicon-calendar"></i>
+            </a>
+        </div>
         <div class="datepicker-popup" v-show="displayDayView">
             <div class="datepicker-inner">
                 <div class="datepicker-body">
@@ -99,11 +85,11 @@
                     return []
                 }
             },
-            width: {
-                type: String,
-                default: '200px'
-            },
             showResetButton: {
+                type: Boolean,
+                default: false
+            },
+            showPickerButton: {
                 type: Boolean,
                 default: false
             }
@@ -138,7 +124,10 @@
             close() {
                 this.displayDayView = this.displayMonthView = this.displayYearView = false
             },
-            inputClick() {
+            show(e) {
+                if (e.target.tagName == 'INPUT' && this.showPickerButton) {
+                    return;
+                }
                 if (this.displayMonthView || this.displayYearView) {
                     this.displayDayView = false
                 } else {
@@ -362,6 +351,13 @@
     .datepicker {
         position: relative;
         display: inline-block;
+    }
+
+    .datepicker .input-group-addon.close {
+        float: none;
+        opacity: 1;
+        line-height: .5;
+        border-left: 0;
     }
 
     .datepicker-popup {
