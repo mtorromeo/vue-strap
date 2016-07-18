@@ -91,7 +91,7 @@
                 twoWay: true
             },
             format: {
-                default: 'MMMM/dd/yyyy'
+                default: 'dd/MM/yyyy'
             },
             disabledDaysOfWeek: {
                 type: Array,
