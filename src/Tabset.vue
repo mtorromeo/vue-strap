@@ -1,62 +1,57 @@
 <template>
-  <div>
-    <!-- Nav tabs -->
-     <ul class="nav nav-{{navStyle}}" role="tablist">
-            <li
-                v-for="r in renderData"
-                v-bind:class="{
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-{{navStyle}}" role="tablist">
+            <li v-for="r in renderData" v-bind:class="{
                   'active': ($index === active),
                   'disabled': r.disabled
-                }"
-                @click.prevent="handleTabListClick($index, r)"
-                :disabled="r.disabled"
-            >
-                <a href="#">  
-                    <slot name="header"> 
-                      {{{r.header}}}
-                  </slot> 
+                }" @click.prevent="handleTabListClick($index, r)" :disabled="r.disabled">
+                <a href="#">
+                    <slot name="header">
+                        {{{r.header}}}
+                    </slot>
                 </a>
             </li>
-     </ul>
+        </ul>
 
-     <!-- Tab panes -->
-     <div class="tab-content" v-el:tab-content>
-        <slot></slot>
-     </div>
-  </div>
+        <!-- Tab panes -->
+        <div class="tab-content" v-el:tab-content>
+            <slot></slot>
+        </div>
+    </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      navStyle: {
-        type: String,
-        default: 'tabs'
-      },
-      effect: {
-        type: String,
-        default: 'fadein'
-      },
-      active: {
-        type: Number,
-        default: 0
-      }
-    },
-    data() {
-      return {
-        renderData: []
-      }
-    },
-    methods: {
-        handleTabListClick(index, el) {
-            if (!el.disabled) this.active = index
+    export default {
+        props: {
+            navStyle: {
+                type: String,
+                default: 'tabs'
+            },
+            effect: {
+                type: String,
+                default: 'fadein'
+            },
+            active: {
+                type: Number,
+                default: 0
+            }
+        },
+        data() {
+            return {
+                renderData: []
+            }
+        },
+        methods: {
+            handleTabListClick(index, el) {
+                if (!el.disabled) this.active = index
+            }
         }
     }
-  }
 </script>
 
 <style scoped>
-  .nav-tabs {
-    margin-bottom: 15px
-  }
+    .nav-tabs {
+        margin-bottom: 15px
+    }
 </style>
