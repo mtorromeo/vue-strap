@@ -128,7 +128,11 @@
         watch: {
             currDate() {
                 this.getDateRange()
-            }
+            },
+
+            value() {
+                this.$emit('change', this.value);
+            },
         },
         methods: {
             close() {
