@@ -2,7 +2,7 @@
     <li style="position:relative">
         <a @mousedown.prevent="handleClick" style="cursor:pointer">
             <span v-el:v><slot></slot></span>
-            <span class="glyphicon glyphicon-ok check-mark" v-show="chosen"></span>
+            <span :class="[iconset, iconset + '-ok']" class="check-mark" v-show="chosen"></span>
         </a>
     </li>
 </template>
@@ -12,7 +12,11 @@
         props: {
             value: {
                 type: String
-            }
+            },
+            iconset: {
+                type: String,
+                default: 'glyphicon',
+            },
         },
         data() {
             return {

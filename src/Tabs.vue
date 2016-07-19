@@ -6,7 +6,7 @@
                 <ul slot="dropdown-menu" class="dropdown-menu">
                     <li v-for="tab in $children | orderBy 'index'" v-if="overflowIndex && $index >= overflowIndex" @click.prevent="tabclick($index, tab)" :disabled="tab.disabled">
                         <a href="#">
-                            <span v-if="tab.icon" :class="tab.iconClass" class="glyphicon"></span>
+                            <span v-if="tab.icon" :class="[iconset, iconset + '-' + tab.icon]"></span>
                             {{{tab.header}}}
                         </a>
                     </li>
@@ -18,7 +18,7 @@
               'disabled': tab.disabled
             }" @click.prevent="tabclick($index, tab)" :disabled="tab.disabled" v-if="!overflowIndex || $index < overflowIndex">
                 <a href="#">
-                    <span v-if="tab.icon" :class="tab.iconClass" class="glyphicon"></span>
+                    <span v-if="tab.icon"  :class="[iconset, iconset + '-' + tab.icon]"></span>
                     {{{tab.header}}}
                 </a>
             </li>
@@ -50,7 +50,11 @@
             active: {
                 type: Number,
                 default: 0,
-            }
+            },
+            iconset: {
+                type: String,
+                default: 'glyphicon',
+            },
         },
         data() {
             return {

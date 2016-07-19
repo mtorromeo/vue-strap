@@ -13,7 +13,7 @@
                 <li v-for="option in options | filterBy searchText " v-bind:id="option.value" style="position:relative">
                     <a @mousedown.prevent="select(option.value)" style="cursor:pointer">
             {{ option.label }}
-            <span class="glyphicon glyphicon-ok check-mark" v-show="isSelected(option.value)"></span>
+            <span :class="[iconset, iconset + '-ok']" class="check-mark" v-show="isSelected(option.value)"></span>
           </a>
                 </li>
             </template>
@@ -59,7 +59,11 @@
             disabled: {
                 type: Boolean,
                 default: false
-            }
+            },
+            iconset: {
+                type: String,
+                default: 'glyphicon',
+            },
         },
         ready() {
             if (this.value.constructor !== Array) {

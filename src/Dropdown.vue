@@ -2,7 +2,7 @@
     <div class="btn-group">
         <slot>
             <button class="btn btn-default" type="button" @click.prevent="toggle">
-                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                <span :class="[iconset, iconset + '-menu-hamburger']"></span>
                 <span class="caret"></span>
             </button>
         </slot>
@@ -12,6 +12,12 @@
 
 <script>
     export default {
+        props: {
+            iconset: {
+                type: String,
+                default: 'glyphicon',
+            },
+        },
         methods: {
             open() {
                 this.$el.classList.add('open');

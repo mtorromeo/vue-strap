@@ -25,9 +25,6 @@
             show() {
                 return (this.$parent.active == this.index);
             },
-            iconClass() {
-                return `glyphicon-${this.icon}`;
-            },
         },
         created() {
             this.$parent.registerTab(this);

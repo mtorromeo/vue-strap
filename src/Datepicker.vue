@@ -11,7 +11,7 @@
                 disabled: disabled !== undefined,
                 'input-group-addon': type != 'hidden'
             }" @click.prevent="show" href="javascript:void(0)">
-                <span class="glyphicon glyphicon-calendar"></span>
+                <span :class="[iconset, iconset + '-calendar']"></span>
             </a>
         </div>
         <div class="datepicker-popup" v-show="displayDayView">
@@ -99,7 +99,11 @@
             showPickerButton: {
                 type: Boolean,
                 default: false,
-            }
+            },
+            iconset: {
+                type: String,
+                default: 'glyphicon',
+            },
         },
         data() {
             return {
