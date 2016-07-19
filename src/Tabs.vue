@@ -105,7 +105,8 @@
 
             findFirstOverflow(verify) {
                 const tabs = [].slice.call(this.$els.tabsContainer.children);
-                for (const [i, tab] of tabs.entries()) {
+                let i = 0;
+                for (const tab of tabs) {
                     if (tab.nodeName != 'LI' || tab == this.$els.dropdown) {
                         continue;
                     }
@@ -113,6 +114,7 @@
                         this.overflowIndex = i;
                         break;
                     }
+                    i++;
                 }
                 if (!verify) {
                     Vue.nextTick(function() {
