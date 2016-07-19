@@ -3,7 +3,7 @@
         <div :class="{
             'input-group': (showResetButton || showPickerButton) && type != 'hidden'
         }">
-            <input :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="value">
+            <input v-el:input :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="value">
             <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
                 &times;
             </a>
@@ -76,6 +76,7 @@
             tabindex: String,
             placeholder: String,
             disabled: String,
+            required: String,
             value: {
                 type: String,
                 twoWay: true,
@@ -121,6 +122,9 @@
             }
         },
         compiled() {
+            if (!this.value) {
+                this.clear();
+            }
             this.$dispatch('child-created', this);
             window.addEventListener('click', this.close);
         },
@@ -254,7 +258,11 @@
                 if (e && this.disabled !== undefined) {
                     return;
                 }
-                this.value = '';
+                if (this.required !== undefined) {
+                    this.date = new Date();
+                } else {
+                    this.value = '';
+                }
             },
             preNextDecadeClick(flag) {
                 if (flag === 0) {
