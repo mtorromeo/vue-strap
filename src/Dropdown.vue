@@ -4,28 +4,40 @@
         <slot name="dropdown-menu"></slot>
     </div>
 </template>
+
 <script>
-    import EventListener from './utils/EventListener'
     export default {
         methods: {
-            toggleDropdown(e) {
-                e.preventDefault()
-                this.$el.classList.toggle('open')
-            }
+            open() {
+                this.$el.classList.add('open');
+            },
+            toggle(e) {
+                if (e) {
+                    e.preventDefault();
+                }
+                this.$el.classList.toggle('open');
+            },
+            close(e) {
+                if (e) {
+                    if (this._toggle && e.target == this._toggle) {
+                        return;
+                    }
+                    if (this.$el.contains(e.target) && e.target.nodeName.toLowerCase() != 'a') {
+                        return;
+                    }
+                }
+                this.$el.classList.remove('open');
+            },
         },
-        ready() {
-            const el = this.$el
-            const toggle = el.querySelector('[data-toggle="dropdown"]')
-            if (toggle) {
-                toggle.style.borderRadius = '4px'
-                toggle.addEventListener('click', this.toggleDropdown)
+        compiled() {
+            this._toggle = this.$el.querySelector('[data-toggle="dropdown"]');
+            if (this._toggle) {
+                this._toggle.addEventListener('click', this.toggle);
             }
-            this._closeEvent = EventListener.listen(window, 'click', (e) => {
-                if (!el.contains(e.target) || e.target.nodeName.toLowerCase() == 'a') el.classList.remove('open')
-            })
+            window.addEventListener('click', this.close);
         },
         beforeDestroy() {
-            if (this._closeEvent) this._closeEvent.remove()
-        }
-    }
+            window.removeEventListener('click', this.close);
+        },
+    };
 </script>
