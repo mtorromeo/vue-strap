@@ -51,7 +51,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 .animated {
     -webkit-animation-duration: 3s;
     animation-duration: 3s;

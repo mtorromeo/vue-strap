@@ -2,7 +2,7 @@
   <div class="bs-docs-section" id="dropdown">
     <h1 class="page-header"><a href="#dropdown" class="anchor">Dropdown</a></h1>
 
-    <tabset>
+    <tabs>
       <tab header="Example">
         <dropdown>
           <button type="button" class="btn btn-default" data-toggle="dropdown">
@@ -81,19 +81,19 @@
           Just use as <a target="_blank" href="http://getbootstrap.com/javascript/#dropdowns">original Bootstrap way</a>.
         </p>
       </tab>
-    </tabset>
+    </tabs>
   </div>
 </template>
 
 <script>
   import dropdown from 'src/Dropdown.vue'
-  import tabset from 'src/Tabset.vue';
+  import tabs from 'src/Tabs.vue';
   import tab from 'src/Tab.vue';
 
   export default {
     components: {
       dropdown,
-      tabset,
+      tabs,
       tab,
     }
   }

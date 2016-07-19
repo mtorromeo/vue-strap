@@ -1,5 +1,5 @@
 <template>
-    <div role="tabpanel" class="tab-pane" v-bind:class="{hide:!show}" v-show="show" :transition="transition">
+    <div role="tabpanel" class="tab-pane" :class="{hide:!show, active:show}" :transition="$parent.effect">
         <slot></slot>
     </div>
 </template>
@@ -7,45 +7,31 @@
 <script>
     export default {
         props: {
+            icon: String,
             header: {
-                type: String
+                type: String,
             },
             disabled: {
                 type: Boolean,
-                default: false
-            }
+                default: false,
+            },
         },
         data() {
             return {
                 index: 0,
-                show: false
-            }
+            };
         },
         computed: {
             show() {
                 return (this.$parent.active == this.index);
             },
-            transition() {
-                return this.$parent.effect
-            }
+            iconClass() {
+                return `glyphicon-${this.icon}`;
+            },
         },
         created() {
-            this.$parent.renderData.push({
-                header: this.header,
-                disabled: this.disabled
-            })
+            this.$parent.registerTab(this);
         },
-        ready() {
-            for (var c in this.$parent.$children) {
-                if (this.$parent.$children[c].$el == this.$el) {
-                    this.index = c;
-                    break;
-                }
-            }
-        },
-        beforeDestroy() {
-            this.$parent.renderData.splice(this.index, 1);
-        }
     }
 </script>
 

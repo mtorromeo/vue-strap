@@ -8,6 +8,7 @@ import checkboxGroup from './checkboxGroup.vue';
 import checkboxBtn from './checkboxBtn.vue';
 import datepicker from './Datepicker.vue';
 import dropdown from './Dropdown.vue';
+import dropdownLi from './DropdownLi.vue';
 import modal from './Modal.vue';
 import option from './Option.vue';
 import panel from './Panel.vue';
@@ -17,7 +18,7 @@ import radioBtn from './radioBtn.vue';
 import radioGroup from './radioGroup.vue';
 import select from './Select.vue';
 import tab from './Tab.vue';
-import tabset from './Tabset.vue';
+import tabs from './Tabs.vue';
 import tooltip from './Tooltip.vue';
 import typeahead from './Typeahead.vue';
 import navbar from './Navbar.vue';
@@ -34,6 +35,7 @@ const VueStrap = {
     checkboxGroup,
     datepicker,
     dropdown,
+    dropdownLi,
     modal,
     option,
     panel,
@@ -43,7 +45,7 @@ const VueStrap = {
     radioBtn,
     select,
     tab,
-    tabset,
+    tabs,
     tooltip,
     typeahead,
     navbar,

@@ -2,7 +2,7 @@
     <div class="bs-docs-section" id="datepicker">
         <h1 class="page-header"><a href="#datepicker" class="anchor">Datepicker</a></h1>
 
-        <tabset>
+        <tabs>
             <tab header="Example">
                 <p>
                     <pre>Selected date is: {{$refs.dp.date}}</pre>
@@ -158,7 +158,7 @@
                     </tbody>
                 </table>
             </tab>
-        </tabset>
+        </tabs>
     </div>
 </template>
 
@@ -166,13 +166,13 @@
     import datepicker from 'src/Datepicker.vue';
     import select from 'src/Select.vue';
     import option from 'src/Option.vue';
-    import tabset from 'src/Tabset.vue';
+    import tabs from 'src/Tabs.vue';
     import tab from 'src/Tab.vue';
 
     export default {
         components: {
                 datepicker,
-                tabset,
+                tabs,
                 tab,
                 'v-select': select,
                 'v-option': option
