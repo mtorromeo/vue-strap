@@ -1,5 +1,5 @@
 <template>
-    <div role="tabpanel" class="tab-pane" :class="{hide:!show, active:show}" :transition="$parent.effect">
+    <div role="tabpanel" class="tab-pane" :class="{hide:!show, active:show}" v-show="show" :transition="$parent.effect">
         <slot></slot>
     </div>
 </template>
@@ -33,7 +33,7 @@
 </script>
 
 <style scoped>
-    .tab-content> .tab-pane {
+    .tab-content > .tab-pane {
         display: block;
     }
 </style>
