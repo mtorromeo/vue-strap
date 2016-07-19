@@ -145,14 +145,6 @@
                     picker: true
                 }
             },
-            watch: {
-                disabled() {
-                    this.$refs.dp.getDateRange()
-                },
-                format(newV) {
-                    this.value = this.$refs.dp.stringify(new Date(this.value))
-                }
-            },
             methods: {
                 dateChanged(value) {
                     console.log(value);
