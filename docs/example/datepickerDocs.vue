@@ -8,7 +8,7 @@
                     <pre>Selected date is: {{$refs.dp.date}}</pre>
                 </p>
 
-                <datepicker type="hidden" v-ref:dp :value.sync="value" :disabled-days-of-week="disabled" :format="format.toString()" :show-reset-button="reset" :show-picker-button="picker" @change="dateChanged"></datepicker>
+                <datepicker v-ref:dp :value.sync="value" :disabled-days-of-week="disabled" :format="format.toString()" :show-reset-button="reset" :show-picker-button="picker" @change="dateChanged"></datepicker>
 
                 <h4>Disabled days of week</h4>
 
