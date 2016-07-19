@@ -19,9 +19,6 @@
         </dropdown>
 
         <dropdown>
-          <button type="button" class="btn btn-success" data-toggle="dropdown">
-            Action <span class="caret"></span>
-          </button>
           <ul slot="dropdown-menu" class="dropdown-menu">
             <li><a href="#">Action</a></li>
             <li><a href="#">Another action</a></li>

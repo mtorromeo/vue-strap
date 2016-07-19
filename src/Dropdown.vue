@@ -1,6 +1,11 @@
 <template>
     <div class="btn-group">
-        <slot></slot>
+        <slot>
+            <button class="btn btn-default" type="button" @click.prevent="toggle">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                <span class="caret"></span>
+            </button>
+        </slot>
         <slot name="dropdown-menu"></slot>
     </div>
 </template>
