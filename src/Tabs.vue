@@ -77,6 +77,7 @@
                 const child = this.getActiveChild();
                 if (child) {
                     this.$emit('change', child);
+                    child.$emit('activated');
                 }
             },
         },
