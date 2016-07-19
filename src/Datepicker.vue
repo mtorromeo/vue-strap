@@ -3,7 +3,7 @@
         <div :class="{
             'input-group': (showResetButton || showPickerButton) && type != 'hidden'
         }">
-            <input v-el:input :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="value">
+            <input :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="value">
             <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
                 &times;
             </a>
@@ -72,6 +72,7 @@
 <script>
     export default {
         props: {
+            name: String,
             tabindex: String,
             placeholder: String,
             disabled: String,
