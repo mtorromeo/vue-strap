@@ -3,7 +3,7 @@
         <div :class="{
             'input-group': (showResetButton || showPickerButton) && type != 'hidden'
         }">
-            <input :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" class="form-control datepicker-input" :type="type" @click="show" v-model="value">
+            <input v-el:input :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="value">
             <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
                 &times;
             </a>
@@ -14,8 +14,9 @@
                 <span :class="[iconset, iconset + '-calendar']"></span>
             </a>
         </div>
-        <div class="datepicker-popup" v-show="displayDayView">
-            <div class="datepicker-inner">
+
+        <div v-el:popup class="datepicker-popup" tabindex="-1" @blur="close" v-if="displayDayView || displayMonthView || displayYearView">
+            <div class="datepicker-inner" v-show="displayDayView">
                 <div class="datepicker-body">
                     <div class="datepicker-ctrl">
                         <span class="month-btn datepicker-preBtn" @click="preNextMonthClick(0)">&lt;</span>
@@ -26,13 +27,12 @@
                         <span v-for="w in weekRange">{{w}}</span>
                     </div>
                     <div class="datepicker-dateRange">
-                        <span v-for="d in dateRange" v-bind:class="d.sclass" @click="daySelect(d.date,this)">{{d.text}}</span>
+                        <span v-for="d in dateRange" :class="d.sclass" @click="daySelect(d.date,this)">{{d.text}}</span>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="datepicker-popup" v-show="displayMonthView">
-            <div class="datepicker-inner">
+
+            <div class="datepicker-inner" v-show="displayMonthView">
                 <div class="datepicker-body">
                     <div class="datepicker-ctrl">
                         <span class="month-btn datepicker-preBtn" @click="preNextYearClick(0)">&lt;</span>
@@ -40,17 +40,16 @@
                         <p @click="switchDecadeView">{{stringifyYearHeader(date)}}</p>
                     </div>
                     <div class="datepicker-monthRange">
-                        <template v-for="m in monthNames">
-                            <span v-bind:class="{'datepicker-dateRange-item-active':
-                  (monthNames[parse(value).getMonth()]  === m) &&
-                  date.getFullYear() === parse(value).getFullYear()}" @click="monthSelect($index)">{{m.substr(0,3)}}</span>
-                        </template>
+                        <span v-for="m in monthNames" :class="{
+                            'datepicker-dateRange-item-active': monthNames[month]  === m
+                        }" @click="monthSelect($index)">
+                            {{m.substr(0,3)}}
+                        </span>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="datepicker-popup" v-show="displayYearView">
-            <div class="datepicker-inner">
+
+            <div class="datepicker-inner" v-show="displayYearView">
                 <div class="datepicker-body">
                     <div class="datepicker-ctrl">
                         <span class="month-btn datepicker-preBtn" @click="preNextDecadeClick(0)">&lt;</span>
@@ -58,10 +57,11 @@
                         <p>{{stringifyDecadeHeader(date)}}</p>
                     </div>
                     <div class="datepicker-monthRange decadeRange">
-                        <template v-for="decade in decadeRange">
-                            <span v-bind:class="{'datepicker-dateRange-item-active':
-                  parse(value).getFullYear() === decade.text}" @click.stop="yearSelect(decade.text)">{{decade.text}}</span>
-                        </template>
+                        <span v-for="decade in decadeRange" :class="{
+                            'datepicker-dateRange-item-active': year === decade.text
+                        }" @click.stop="yearSelect(decade.text)">
+                            {{decade.text}}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -226,23 +226,28 @@
         },
         methods: {
             close(e) {
-                if (e && this.$el.contains(e.target)) {
+                if (e && e.type == 'click' && this.$el.contains(e.target)) {
+                    return;
+                }
+                if (e && e.type == 'blur' && this.$el.contains(e.relatedTarget)) {
                     return;
                 }
                 this.displayDayView = this.displayMonthView = this.displayYearView = false;
             },
-            show(e) {
+            toggle(e) {
                 if (e && this.disabled !== undefined) {
                     return;
                 }
                 if (e.target.nodeName == 'INPUT' && this.showPickerButton) {
                     return;
                 }
-                if (this.displayMonthView || this.displayYearView) {
-                    this.displayDayView = false;
-                } else {
-                    this.displayDayView = !this.displayDayView;
+                this.displayDayView = !(this.displayMonthView || this.displayYearView || this.displayDayView);
+            },
+            show(e) {
+                if (e && this.disabled !== undefined) {
+                    return;
                 }
+                this.displayDayView = true;
             },
             clear(e) {
                 if (e && this.disabled !== undefined) {
