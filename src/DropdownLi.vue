@@ -1,7 +1,7 @@
 <template>
     <li class="btn-group dropdown">
         <slot>
-            <a href="javascript:void(0)" @click.prevent="toggle">
+            <a href="javascript:void(0)" data-toggle="dropdown">
                 <span :class="[iconset, iconset + '-menu-hamburger']"></span>
                 <span class="caret"></span>
             </a>
