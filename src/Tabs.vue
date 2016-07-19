@@ -32,6 +32,7 @@
 </template>
 
 <script>
+    import Vue from 'vue';
     import DropdownLi from './DropdownLi.vue';
 
     export default {
