@@ -5,10 +5,10 @@
         <tabset>
             <tab header="Example">
                 <p>
-                    <pre>Selected date is: {{new Date(value).toString().slice(0, -23)}}</pre>
+                    <pre>Selected date is: {{$refs.dp.date}}</pre>
                 </p>
 
-                <datepicker v-ref:dp :value.sync="value" :disabled-days-of-week="disabled" :format="format.toString()" :show-reset-button="reset" :show-picker-button="picker" @change="dateChanged"></datepicker>
+                <datepicker type="hidden" v-ref:dp :value.sync="value" :disabled-days-of-week="disabled" :format="format.toString()" :show-reset-button="reset" :show-picker-button="picker" @change="dateChanged"></datepicker>
 
                 <h4>Disabled days of week</h4>
 
@@ -88,13 +88,37 @@
                             <td>value</td>
                             <td><code>String</code></td>
                             <td></td>
-                            <td>Value of the input DOM</td>
+                            <td>Input's value</td>
+                        </tr>
+                        <tr>
+                            <td>type</td>
+                            <td><code>String</code></td>
+                            <td>text</td>
+                            <td>Input's type. Type <code>hidden</code> can be used to only show a picker button.</td>
+                        </tr>
+                        <tr>
+                            <td>tabindex</td>
+                            <td><code>String</code></td>
+                            <td></td>
+                            <td>Input's tabindex</td>
+                        </tr>
+                        <tr>
+                            <td>placeholder</td>
+                            <td><code>String</code></td>
+                            <td></td>
+                            <td>Input's placeholder</td>
+                        </tr>
+                        <tr>
+                            <td>disabled</td>
+                            <td><code>String</code></td>
+                            <td></td>
+                            <td>Input's disabled</td>
                         </tr>
                         <tr>
                             <td>format</td>
                             <td><code>String</code></td>
                             <td><code>dd/MM/yyyy</code></td>
-                            <td>The date format, combination of d, dd, M, MM ,MMM , MMMM, yyyy.</td>
+                            <td>The date format, combination of d, dd, M, MM , MMM, MMMM, yyyy.</td>
                         </tr>
                         <tr>
                             <td>disabledDaysOfWeek</td>
@@ -114,6 +138,23 @@
                             <td>false</td>
                             <td>If <strong>true</strong> shows a button to trigger the datepicker while clicking on the input does nothing.</td>
                         </tr>
+                    </tbody>
+                </table>
+            </tab>
+
+            <tab header="Events">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Parameters</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td>change</td>
+                        <td>value</td>
+                        <td>Triggered on value change</td>
                     </tbody>
                 </table>
             </tab>

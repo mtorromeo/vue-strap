@@ -1,14 +1,17 @@
 <template>
     <div class="datepicker">
         <div :class="{
-            'input-group': showResetButton || showPickerButton
+            'input-group': (showResetButton || showPickerButton) && type != 'hidden'
         }">
-            <input :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" class="form-control datepicker-input" type="text" @click="show" v-model="value">
-            <a v-if="showResetButton" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
+            <input :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" class="form-control datepicker-input" :type="type" @click="show" v-model="value">
+            <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
                 &times;
             </a>
-            <a v-if="showPickerButton" class="input-group-addon" :class="{disabled: disabled !== undefined}" @click.prevent="show" href="javascript:void(0)">
-                <i class="glyphicon glyphicon-calendar"></i>
+            <a v-if="showPickerButton" :class="{
+                disabled: disabled !== undefined,
+                'input-group-addon': type != 'hidden'
+            }" @click.prevent="show" href="javascript:void(0)">
+                <span class="glyphicon glyphicon-calendar"></span>
             </a>
         </div>
         <div class="datepicker-popup" v-show="displayDayView">
@@ -75,6 +78,10 @@
             value: {
                 type: String,
                 twoWay: true,
+            },
+            type: {
+                type: String,
+                default: 'text',
             },
             format: {
                 default: 'dd/MM/yyyy',
