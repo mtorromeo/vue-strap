@@ -1,14 +1,14 @@
 <template>
-    <div v-show="show" v-bind:class="{
-      'alert':		true,
-      'alert-success':(type == 'success'),
-      'alert-warning':(type == 'warning'),
-      'alert-info':	(type == 'info'),
-      'alert-danger':	(type == 'danger'),
-      'top': 			(placement === 'top'),
-      'top-right': 	(placement === 'top-right')
-    }" transition="fade" v-bind:style="{width:width}" role="alert">
-        <button v-show="dismissable" type="button" class="close" @click="show = false">
+    <div v-show="show" :class="{
+        'alert':         true,
+        'alert-success': (type == 'success'),
+        'alert-warning': (type == 'warning'),
+        'alert-info':    (type == 'info'),
+        'alert-danger':  (type == 'danger'),
+        'top':           (placement === 'top'),
+        'top-right':     (placement === 'top-right')
+    }" transition="fade" :style="{width:width}" role="alert">
+        <button v-show="dismissable" type="button" class="close" @click="close">
             <span>&times;</span>
         </button>
         <slot></slot>
@@ -19,7 +19,7 @@
     export default {
         props: {
             type: {
-                type: String
+                type: String,
             },
             dismissable: {
                 type: Boolean,
@@ -28,11 +28,10 @@
             show: {
                 type: Boolean,
                 default: true,
-                twoWay: true
             },
             duration: {
                 type: Number,
-                default: 0
+                default: 0,
             },
             width: {
                 type: String
@@ -42,13 +41,31 @@
             }
         },
         watch: {
-            show(val) {
-                if (this._timeout) clearTimeout(this._timeout)
-                if (val && Boolean(this.duration)) {
-                    this._timeout = setTimeout(() => this.show = false, this.duration)
+            show(value) {
+                this.clearTimeout();
+                if (value) {
+                    this.$emit('opened');
+                    if (this.duration) {
+                        this._timeout = setTimeout(this.close, this.duration);
+                    }
+                } else {
+                    this.$emit('closed');
                 }
-            }
-        }
+            },
+        },
+        methods: {
+            open() {
+                this.show = true;
+            },
+            close() {
+                this.show = false;
+            },
+            clearTimeout() {
+                if (this._timeout) {
+                    clearTimeout(this._timeout);
+                }
+            },
+        },
     }
 </script>
 
