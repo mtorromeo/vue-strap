@@ -1,26 +1,26 @@
 <template>
-    <label class="btn" v-bind:class="{
-        'active':active,
-        'btn-success':type == 'success',
-        'btn-warning':type == 'warning',
-        'btn-info':type == 'info',
-        'btn-danger':type == 'danger',
-        'btn-default':type == 'default',
-        'btn-primary':type == 'primary'
+    <label class="btn" :class="{
+        'active':      checked,
+        'btn-success': type == 'success',
+        'btn-warning': type == 'warning',
+        'btn-info':    type == 'info',
+        'btn-danger':  type == 'danger',
+        'btn-default': type == 'default',
+        'btn-primary': type == 'primary',
     }">
-
-        <input type="radio" autocomplete="off" :checked="checked" @click="handleClick" />
-
+        <input :value="value" :name="$parent.name" :tabindex="tabindex" type="radio" autocomplete="off" :checked="checked" @click="handleClick">
         <slot></slot>
-
     </label>
 </template>
 
 <script>
     export default {
         props: {
-            value: {
-                type: String
+            value: String,
+            tabindex: String,
+            type: {
+                type: String,
+                default: 'default',
             },
             checked: {
                 type: Boolean,
@@ -28,24 +28,27 @@
             }
         },
         computed: {
-            type() {
-                return this.$parent.type
-            },
             active() {
-                return this.$parent.value === this.value
+                return this.$parent.value === this.value;
             }
         },
         methods: {
             handleClick() {
-                this.$parent.value = this.value
+                this.$parent.value = this.value;
             }
         },
         created() {
             if (this.$parent.value === this.value) {
-                this.checked = true
-            } else if (!this.$parent.value.length && this.checked) {
-                this.$parent.value = this.value
+                this.checked = true;
+            } else if (!this.$parent.value && this.checked) {
+                this.$parent.value = this.value;
             }
-        }
-    }
+        },
+    };
 </script>
+
+<style scoped>
+    input[type='radio'] {
+        display: none;
+    }
+</style>

@@ -7,14 +7,11 @@
 <script>
     export default {
         props: {
+            name: String,
             value: {
                 type: String,
-                twoWay: true
+                twoWay: true,
             },
-            type: {
-                type: String,
-                default: 'default'
-            }
-        }
-    }
+        },
+    };
 </script>

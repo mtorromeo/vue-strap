@@ -13,10 +13,6 @@
                     return []
                 }
             },
-            type: {
-                type: String,
-                default: 'default'
-            }
         }
     }
 </script>
