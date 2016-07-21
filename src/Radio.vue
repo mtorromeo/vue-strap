@@ -8,7 +8,7 @@
         'btn-default': type == 'default',
         'btn-primary': type == 'primary',
     }">
-        <input :value="value" :name="$parent.name" :tabindex="tabindex" type="radio" autocomplete="off" :checked="checked" @click="handleClick">
+        <input :value="value" :name="$parent.name" :tabindex="tabindex" type="radio" autocomplete="off" :checked="checked" @click.prevent="handleClick">
         <slot></slot>
     </label>
 </template>
