@@ -5,14 +5,5 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            value: {
-                type: Array,
-                default () {
-                    return []
-                }
-            },
-        }
-    }
+    export default {};
 </script>

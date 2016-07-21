@@ -8,7 +8,8 @@
         'btn-default': type == 'default',
         'btn-primary': type == 'primary',
     }">
-        <input :value="value" :name="name" :tabindex="tabindex" type="checkbox" autocomplete="off" :checked="checked" @click="handleClick">
+        <input v-if="uncheckedValue" type="hidden" :name="name" v-model="hiddenValue">
+        <input :value="value" :name="checkboxName" :tabindex="tabindex" type="checkbox" autocomplete="off" v-model="checked">
         <slot></slot>
     </label>
 </template>
@@ -18,6 +19,7 @@
         props: {
             name: String,
             value: String,
+            uncheckedValue: String,
             tabindex: String,
             type: {
                 type: String,
@@ -28,20 +30,14 @@
                 default: false,
             },
         },
-        methods: {
-            handleClick() {
-                const parent = this.$parent;
-                const index = parent.value.indexOf(this.value)
-                index === -1 ? parent.value.push(this.value) : parent.value.splice(index, 1);
-                this.checked = !this.checked;
-            }
-        },
-        created() {
-            if (this.$parent.value.length) {
-                this.checked = this.$parent.value.indexOf(this.value) > -1;
-            } else if (this.checked) {
-                this.$parent.value.push(this.value);
-            }
+
+        computed: {
+            checkboxName() {
+                return this.uncheckedValue ? false : this.name;
+            },
+            hiddenValue() {
+                return this.checked ? this.value : this.uncheckedValue;
+            },
         },
     };
 </script>
