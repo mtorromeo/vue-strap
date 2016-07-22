@@ -15,7 +15,7 @@
             </a>
         </div>
 
-        <div v-el:popup class="datepicker-popup" tabindex="-1" @blur="close" v-if="displayDayView || displayMonthView || displayYearView">
+        <div v-el:popup class="datepicker-popup panel" tabindex="-1" @blur="close" v-if="displayDayView || displayMonthView || displayYearView">
             <div class="datepicker-inner" v-show="displayDayView">
                 <div class="datepicker-body">
                     <div class="datepicker-ctrl">
@@ -401,9 +401,6 @@
 
     .datepicker-popup {
         position: absolute;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background: #fff;
         margin-top: 2px;
         z-index: 1000;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
