@@ -25,7 +25,7 @@
         },
         computed: {
             checked() {
-                return this.$parent.value === this.value;
+                return this.$parent.value == this.value;
             },
         },
         methods: {
