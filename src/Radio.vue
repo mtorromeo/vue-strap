@@ -1,6 +1,6 @@
 <template>
     <label class="btn" :class="{
-        'active':      checked,
+        'active':      active,
         'btn-success': type == 'success',
         'btn-warning': type == 'warning',
         'btn-info':    type == 'info',
@@ -8,7 +8,7 @@
         'btn-default': type == 'default',
         'btn-primary': type == 'primary',
     }">
-        <input :value="value" :name="$parent.name" :tabindex="tabindex" type="radio" autocomplete="off" :checked="checked" @click.prevent="handleClick">
+        <input :value="value" :name="$parent.name" :tabindex="tabindex" type="radio" autocomplete="off" v-model="active" @click="handleClick">
         <slot></slot>
     </label>
 </template>
@@ -22,27 +22,16 @@
                 type: String,
                 default: 'default',
             },
-            checked: {
-                type: Boolean,
-                default: false
-            }
         },
         computed: {
             active() {
                 return this.$parent.value === this.value;
-            }
+            },
         },
         methods: {
             handleClick() {
                 this.$parent.value = this.value;
-            }
-        },
-        created() {
-            if (this.$parent.value === this.value) {
-                this.checked = true;
-            } else if (!this.$parent.value && this.checked) {
-                this.$parent.value = this.value;
-            }
+            },
         },
     };
 </script>
