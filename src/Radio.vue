@@ -34,6 +34,11 @@
                 this.$parent.value = this.value;
             },
         },
+        watch: {
+            value() {
+                this.$emit('change', this.value);
+            },
+        },
     };
 </script>
 

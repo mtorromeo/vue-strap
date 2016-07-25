@@ -39,6 +39,11 @@
             hiddenValue() {
                 return this.checked ? this.value : this.uncheckedValue;
             },
+            watch: {
+                checked() {
+                    this.$emit('change', this.checked);
+                },
+            },
         },
     };
 </script>
