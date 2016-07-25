@@ -7,7 +7,7 @@
         'btn-danger':  type == 'danger',
         'btn-default': type == 'default',
         'btn-primary': type == 'primary',
-    }">
+    }" :title="title">
         <input v-if="uncheckedValue" type="hidden" :name="name" v-model="hiddenValue">
         <input :value="value" :name="checkboxName" :tabindex="tabindex" type="checkbox" autocomplete="off" v-model="checked">
         <slot></slot>
@@ -21,6 +21,7 @@
             value: String,
             uncheckedValue: String,
             tabindex: String,
+            title: String,
             type: {
                 type: String,
                 default: 'default',

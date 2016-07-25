@@ -7,7 +7,7 @@
         'btn-danger':  type == 'danger',
         'btn-default': type == 'default',
         'btn-primary': type == 'primary',
-    }">
+    }" :title="title">
         <input :value="value" :name="$parent.name" :tabindex="tabindex" type="radio" autocomplete="off" :checked="checked" @click="handleClick">
         <slot></slot>
     </label>
@@ -18,6 +18,7 @@
         props: {
             value: String,
             tabindex: String,
+            title: String,
             type: {
                 type: String,
                 default: 'default',
