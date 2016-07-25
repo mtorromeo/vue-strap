@@ -4,7 +4,7 @@
         <ul v-el:tabs-container class="nav nav-{{navStyle}}" role="tablist">
             <dropdown-li v-show="overflowIndex" v-el:dropdown class="pull-right tabdrop" :class="{'active': active >= overflowIndex}">
                 <ul slot="dropdown-menu" class="dropdown-menu">
-                    <li v-for="tab in $children | orderBy 'index'" v-if="overflowIndex && $index >= overflowIndex" @click.prevent="tabclick($index, tab)" :disabled="tab.disabled">
+                    <li v-for="tab in $children | orderBy 'index'" v-if="isDropdownTab(tab)" @click.prevent="tabclick(tab)" :disabled="tab.disabled">
                         <a href="#">
                             <span v-if="tab.icon" :class="[iconset, iconset + '-' + tab.icon]"></span>
                             {{{tab.header}}}
@@ -14,9 +14,9 @@
             </dropdown-li>
 
             <li class="tab" v-for="tab in $children | orderBy 'index'" :class="{
-              'active': ($index === active),
+              'active': (tab.index === active),
               'disabled': tab.disabled
-            }" @click.prevent="tabclick($index, tab)" :disabled="tab.disabled" v-if="!overflowIndex || $index < overflowIndex">
+            }" @click.prevent="tabclick(tab)" :disabled="tab.disabled" v-if="isRegularTab(tab)">
                 <a href="#">
                     <span v-if="tab.icon"  :class="[iconset, iconset + '-' + tab.icon]"></span>
                     {{{tab.header}}}
@@ -61,7 +61,7 @@
             return {
                 overflowIndex: 0,
                 resizeTimer: false,
-            }
+            };
         },
         created() {
             window.addEventListener('resize', this.timedReflow);
@@ -83,15 +83,23 @@
             },
         },
         methods: {
-            tabclick(index, el) {
-                if (!el.disabled) {
-                    this.active = index;
+            isRegularTab(tab) {
+                return tab.$el != this.$els.dropdown && (!this.overflowIndex || tab.index < this.overflowIndex);
+            },
+
+            isDropdownTab(tab) {
+                return tab.$el != this.$els.dropdown && (this.overflowIndex && tab.index >= this.overflowIndex);
+            },
+
+            tabclick(tab) {
+                if (!tab.disabled) {
+                    this.active = tab.index;
                 }
             },
 
             getActiveChild() {
                 for (const child of this.$children) {
-                    if (child.index == this.active) {
+                    if (child.$el != this.$els.dropdown && child.index == this.active) {
                         return child;
                     }
                 }
