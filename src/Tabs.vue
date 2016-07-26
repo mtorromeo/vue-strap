@@ -83,11 +83,11 @@
         },
         methods: {
             isRegularTab(tab) {
-                return tab.parentNode == this.$els.tabsContainer && tab.$el != this.$els.dropdown && (!this.overflowIndex || tab.index < this.overflowIndex);
+                return tab && tab.parentNode == this.$els.tabsContainer && tab.$el != this.$els.dropdown && (!this.overflowIndex || tab.index < this.overflowIndex);
             },
 
             isDropdownTab(tab) {
-                return tab.parentNode.parentNode == this.$els.dropdown && (this.overflowIndex && tab.index >= this.overflowIndex);
+                return tab && tab.parentNode && tab.parentNode.parentNode == this.$els.dropdown && (this.overflowIndex && tab.index >= this.overflowIndex);
             },
 
             tabclick(tab) {
