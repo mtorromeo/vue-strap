@@ -83,11 +83,11 @@
         },
         methods: {
             isRegularTab(tab) {
-                return tab && tab.parentNode == this.$els.tabsContainer && tab.$el != this.$els.dropdown && (!this.overflowIndex || tab.index < this.overflowIndex);
+                return tab.$el.getAttribute('role') == 'tabpanel' && (!this.overflowIndex || tab.index < this.overflowIndex);
             },
 
             isDropdownTab(tab) {
-                return tab && tab.parentNode && tab.parentNode.parentNode == this.$els.dropdown && (this.overflowIndex && tab.index >= this.overflowIndex);
+                return tab.$el.getAttribute('role') == 'tabpanel' && (this.overflowIndex && tab.index >= this.overflowIndex);
             },
 
             tabclick(tab) {
@@ -98,7 +98,7 @@
 
             getActiveChild() {
                 for (const child of this.$children) {
-                    if (child.$el != this.$els.dropdown && child.index == this.active) {
+                    if (child.$el.getAttribute('role') == 'tabpanel' && child.index == this.active) {
                         return child;
                     }
                 }
