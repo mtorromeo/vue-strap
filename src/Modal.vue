@@ -1,28 +1,39 @@
 <template>
-    <div role="dialog" v-bind:class="{
-        'modal':true,
-        'fade':effect === 'fade',
-        'zoom':effect === 'zoom'
-    }">
-        <div v-bind:class="{'modal-dialog':true,'modal-lg':large,'modal-sm':small}" role="document" v-bind:style="{width: optionalWidth}">
-            <div class="modal-content">
+    <div role="dialog" :class="{
+        modal: backdrop,
+        fade:  effect === 'fade',
+        zoom:  effect === 'zoom',
+        in:    show,
+    }" :style="{
+        display: display ? 'block' : 'none',
+    }" @click="backdropClick">
+        <div :class="{
+            'modal-dialog': true,
+            'modal-lg':     large,
+            'modal-sm':     small,
+        }" role="document" :style="{width: optionalWidth}">
+            <div v-el:modal-content class="modal-content">
                 <slot name="modal-header">
                     <div class="modal-header">
-                        <button type="button" class="close" @click="close"><span>&times;</span></button>
+                        <button type="button" class="close" @click="close">
+                            <span>&times;</span>
+                        </button>
                         <h4 class="modal-title">
-              <slot name="title">
-                {{title}}
-              </slot>
-            </h4>
+                            <slot name="title">
+                                {{title}}
+                            </slot>
+                        </h4>
                     </div>
                 </slot>
+
                 <slot name="modal-body">
                     <div class="modal-body"></div>
                 </slot>
+
                 <slot name="modal-footer">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" @click="close">{{ cancelText }}</button>
-                        <button type="button" class="btn btn-primary" @click="callback">{{ okText }}</button>
+                        <button type="button" class="btn btn-primary" @click="confirm">{{ okText }}</button>
                     </div>
                 </slot>
             </div>
@@ -31,97 +42,112 @@
 </template>
 
 <script>
-    import getScrollBarWidth from './utils/getScrollBarWidth.js'
-    import EventListener from './utils/EventListener.js'
+    import getScrollBarWidth from './utils/getScrollBarWidth.js';
 
     export default {
         props: {
             okText: {
                 type: String,
-                default: 'Save changes'
+                default: 'Save changes',
             },
             cancelText: {
                 type: String,
-                default: 'Close'
+                default: 'Close',
             },
             title: {
                 type: String,
-                default: ''
+                default: '',
             },
             show: {
                 require: true,
                 type: Boolean,
-                twoWay: true
+                twoWay: true,
             },
             width: {
-                default: null
+                default: null,
             },
             callback: {
                 type: Function,
-                default () {}
+                default() {
+                    return true;
+                },
             },
             effect: {
                 type: String,
-                default: null
+                default: null,
             },
             backdrop: {
                 type: Boolean,
-                default: true
+                default: true,
             },
             large: {
                 type: Boolean,
-                default: false
+                default: false,
             },
             small: {
                 type: Boolean,
-                default: false
-            }
+                default: false,
+            },
         },
-        ready() {
-            this.$watch('show', (val) => {
-                const el = this.$el
-                const body = document.body
-                const scrollBarWidth = getScrollBarWidth()
-                if (val) {
-                    el.querySelector('.modal-content').focus()
-                    el.style.display = 'block'
-                    setTimeout(() => el.classList.add('in'), 0)
-                    body.classList.add('modal-open')
-                    if (scrollBarWidth !== 0) {
-                        body.style.paddingRight = scrollBarWidth + 'px'
-                    }
-                    if (this.backdrop) {
-                        this._blurModalContentEvent = EventListener.listen(this.$el, 'click', (e) => {
-                            if (e.target === el) this.show = false
-                        })
-                    }
-                } else {
-                    if (this._blurModalContentEvent) this._blurModalContentEvent.remove()
-                    el.classList.remove('in')
-                    setTimeout(() => {
-                        el.style.display = 'none'
-                        body.classList.remove('modal-open')
-                        body.style.paddingRight = '0'
-                    }, 300)
-                }
-            }, {
-                immediate: true
-            })
+        data() {
+            return {
+                display: true,
+            };
+        },
+        compiled() {
+            this.$watch('show', this.watchShow, {
+                immediate: true,
+            });
         },
         computed: {
-            optionalWidth: function() {
+            optionalWidth() {
                 if (this.width === null) {
                     return null;
                 } else if (Number.isInteger(this.width)) {
-                    return this.width + "px";
+                    return `${this.width}px`;
                 }
                 return this.width;
             },
         },
         methods: {
             close() {
-                this.show = false
-            }
+                this.show = false;
+            },
+            confirm() {
+                if (this.callback) {
+                    const result = this.callback();
+                    if (result !== undefined && !result) {
+                        return;
+                    }
+                }
+                this.$emit('confirm');
+                this.close();
+            },
+            backdropClick(e) {
+                if (this.backdrop && e.target === this.$el) {
+                    this.close();
+                }
+            },
+            watchShow(val) {
+                const body = document.body;
+                if (val) {
+                    this.$els.modalContent.focus();
+                    this.display = true;
+                    body.classList.add('modal-open');
+                    const scrollBarWidth = getScrollBarWidth();
+                    if (scrollBarWidth !== 0) {
+                        body.style.paddingRight = scrollBarWidth + 'px';
+                    }
+                    this.$emit('open');
+                } else {
+                    setTimeout(() => {
+                        this.display = false;
+                        body.classList.remove('modal-open');
+                        body.style.paddingRight = '0';
+                        this.$emit('close');
+                    }, 300);
+                }
+            },
         }
     }
 </script>
