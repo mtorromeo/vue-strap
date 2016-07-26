@@ -32,7 +32,6 @@
 </template>
 
 <script>
-    import Vue from 'vue';
     import DropdownLi from './DropdownLi.vue';
 
     export default {
@@ -125,7 +124,7 @@
                     i++;
                 }
                 if (!verify) {
-                    Vue.nextTick(function() {
+                    this.$nextTick(function() {
                         this.findFirstOverflow(true);
                     }.bind(this));
                 }
@@ -133,7 +132,7 @@
 
             reflow() {
                 this.overflowIndex = 0;
-                Vue.nextTick(this.findFirstOverflow);
+                this.$nextTick(this.findFirstOverflow);
             },
 
             registerTab(tab) {
