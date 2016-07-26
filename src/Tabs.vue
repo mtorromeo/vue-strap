@@ -167,6 +167,7 @@
     }
 
     .nav-tabs {
-        margin-bottom: 15px
+        position: relative;
+        margin-bottom: 15px;
     }
 </style>
