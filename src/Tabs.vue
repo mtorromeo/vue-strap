@@ -13,11 +13,11 @@
                 </ul>
             </dropdown-li>
 
-            <li class="tab" v-for="tab in $children | orderBy 'index'" :class="{
+            <li v-for="tab in $children | orderBy 'index'" :class="{
               'active': (tab.index === active),
               'disabled': tab.disabled
             }" @click.prevent="tabclick(tab)" :disabled="tab.disabled" v-if="isRegularTab(tab)">
-                <a href="#">
+                <a class="tab" href="#">
                     <span v-if="tab.icon"  :class="[iconset, iconset + '-' + tab.icon]"></span>
                     {{{tab.header}}}
                 </a>
