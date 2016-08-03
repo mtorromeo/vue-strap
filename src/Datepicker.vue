@@ -88,6 +88,10 @@
             format: {
                 default: 'dd/MM/yyyy',
             },
+            firstDayOfWeek: {
+                type: Number,
+                default: 1,
+            },
             disabledDaysOfWeek: {
                 type: Array,
                 default () {
@@ -109,7 +113,7 @@
         },
         data() {
             return {
-                weekRange: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                dayNames: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
                 displayDayView: false,
                 displayMonthView: false,
                 displayYearView: false,
@@ -149,6 +153,13 @@
                     this.value = this.stringify(value);
                 },
             },
+            weekRange() {
+                const range = [];
+                for (let i = 0; i < 7; i++) {
+                    range.push(this.dayNames[(i + this.firstDayOfWeek) % 7]);
+                }
+                return range;
+            },
             decadeRange() {
                 const decadeRange = [];
                 const yearStr = this.year.toString();
@@ -163,17 +174,22 @@
             dateRange() {
                 const dateRange = [];
 
-                const currMonthFirstDay = new Date(this.year, this.month, 1);
-                let firstDayWeek = currMonthFirstDay.getDay() + 1;
+                const firstOfMonth = new Date(this.year, this.month, 1);
+                let firstDayWeek = firstOfMonth.getDay();
                 if (firstDayWeek === 0) {
                     firstDayWeek = 7;
                 }
-                const dayCount = this.getDayCount(this.year, this.month);
-                if (firstDayWeek > 1) {
+                let numDaysOfPrevMonth = firstDayWeek - this.firstDayOfWeek;
+                if (numDaysOfPrevMonth < 0) {
+                    numDaysOfPrevMonth += 7;
+                }
+
+                if (numDaysOfPrevMonth) {
                     const preMonth = this.getYearMonth(this.year, this.month - 1);
                     const prevMonthDayCount = this.getDayCount(preMonth.year, preMonth.month);
-                    for (let i = 1; i < firstDayWeek; i++) {
-                        const dayText = prevMonthDayCount - firstDayWeek + i + 1;
+
+                    for (let i = 0; i < numDaysOfPrevMonth; i++) {
+                        const dayText = prevMonthDayCount - numDaysOfPrevMonth + i;
                         dateRange.push({
                             text: dayText,
                             date: new Date(preMonth.year, preMonth.month, dayText),
@@ -182,6 +198,7 @@
                     }
                 }
 
+                const dayCount = this.getDayCount(this.year, this.month);
                 for (let i = 1; i <= dayCount; i++) {
                     const date = new Date(this.year, this.month, i);
                     const week = date.getDay();
@@ -204,8 +221,9 @@
                     });
                 }
 
-                if (dateRange.length < 42) {
-                    const nextMonthNeed = 42 - dateRange.length;
+                const nextMonthNeed = 7 - (dayCount + numDaysOfPrevMonth) % 7;
+
+                if (nextMonthNeed != 7) {
                     const nextMonth = this.getYearMonth(this.year, this.month + 1);
 
                     for (let i = 1; i <= nextMonthNeed; i++) {
