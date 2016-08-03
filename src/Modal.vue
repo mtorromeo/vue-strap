@@ -16,18 +16,16 @@
                 <slot name="modal-header">
                     <div class="modal-header">
                         <button type="button" class="close" @click="close">
-                            <span>&times;</span>
+                            &times;
                         </button>
                         <h4 class="modal-title">
-                            <slot name="title">
-                                {{title}}
-                            </slot>
+                            <slot name="title">{{{title}}}</slot>
                         </h4>
                     </div>
                 </slot>
 
                 <slot name="modal-body">
-                    <div class="modal-body"></div>
+                    <div class="modal-body">{{{body}}}</div>
                 </slot>
 
                 <slot name="modal-footer">
@@ -55,6 +53,10 @@
                 default: 'Close',
             },
             title: {
+                type: String,
+                default: '',
+            },
+            body: {
                 type: String,
                 default: '',
             },
