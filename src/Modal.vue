@@ -15,7 +15,7 @@
             <div v-el:modal-content class="modal-content">
                 <slot name="modal-header">
                     <div class="modal-header">
-                        <button type="button" class="close" @click="close">
+                        <button type="button" class="close" @click="cancel">
                             &times;
                         </button>
                         <h4 class="modal-title">
@@ -30,7 +30,7 @@
 
                 <slot name="modal-footer">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" @click="close">{{ cancelText }}</button>
+                        <button type="button" class="btn btn-default" @click="cancel">{{ cancelText }}</button>
                         <button type="button" class="btn btn-primary" @click="confirm">{{ okText }}</button>
                     </div>
                 </slot>
@@ -115,6 +115,10 @@
             close() {
                 this.show = false;
             },
+            cancel() {
+                this.$emit('cancel');
+                this.close();
+            },
             confirm() {
                 if (this.callback) {
                     const result = this.callback();
@@ -127,7 +131,7 @@
             },
             backdropClick(e) {
                 if (this.backdrop && e.target === this.$el) {
-                    this.close();
+                    this.cancel();
                 }
             },
             watchShow(val) {
