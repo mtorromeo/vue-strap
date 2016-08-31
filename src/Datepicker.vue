@@ -3,7 +3,7 @@
         <div :class="{
             'input-group': (showResetButton || showPickerButton) && type != 'hidden'
         }">
-            <input v-el:input :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="value">
+            <input v-el:input :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="formattedValue">
             <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
                 &times;
             </a>
@@ -147,11 +147,21 @@
         computed: {
             date: {
                 get() {
-                    return this.parse(this.value) || this.parse(new Date());
+                    let date = null;
+                    if (this.value) {
+                        date = this.parse(this.value);
+                    }
+                    return date ? date : this.parse(new Date());
                 },
                 set(value) {
                     this.value = this.stringify(value);
                 },
+            },
+            formattedValue() {
+                if (!this.value) {
+                    return '';
+                }
+                return this.stringify(this.date, this.format);
             },
             weekRange() {
                 const range = [];
