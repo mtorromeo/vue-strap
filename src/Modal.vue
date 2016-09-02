@@ -1,9 +1,9 @@
 <template>
-    <div role="dialog" :class="{
-        modal: backdrop,
-        fade:  effect === 'fade',
-        zoom:  effect === 'zoom',
-        in:    show,
+    <div role="dialog" class="modal" :class="{
+        modeless: !backdrop,
+        fade:     effect === 'fade',
+        zoom:     effect === 'zoom',
+        in:       show,
     }" :style="{
         display: display ? 'block' : 'none',
     }" @click="backdropClick">
@@ -162,8 +162,23 @@
         transition: all 0.3s ease;
     }
 
+    .modal.modeless {
+        transition: opacity 0.3s ease;
+    }
+
     .modal.in {
         background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal.in.modeless {
+        background: transparent;
+        bottom: initial;
+        left: initial;
+        right: initial;
+    }
+
+    .modal.modeless .modal-dialog {
+        margin: 20px;
     }
 
     .modal.zoom .modal-dialog {
