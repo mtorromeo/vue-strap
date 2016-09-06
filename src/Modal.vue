@@ -1,7 +1,7 @@
 <template>
     <div role="dialog" class="modal" :class="{
         modeless: !backdrop,
-        movable:  movable,
+        movable:  draggable,
         dragging: dragging,
         fade:     effect === 'fade',
         zoom:     effect === 'zoom',
@@ -20,8 +20,7 @@
             <div v-el:modal-content class="modal-content">
                 <slot name="modal-header">
                     <div class="modal-header"
-                         @mousedown="startDrag" @touchstart="startDrag"
-                         @mouseup="stopDrag" @touchend="stopDrag">
+                         @mousedown="startDrag" @touchstart="startDrag">
                         <button type="button" class="close" @click="cancel">
                             &times;
                         </button>
