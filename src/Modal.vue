@@ -250,6 +250,7 @@
 
     .modal.in.modeless {
         background: transparent;
+        overflow: visible;
     }
 
     .modal.in.movable {
