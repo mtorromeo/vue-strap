@@ -43,7 +43,7 @@
     animation: fadein-in 0.3s ease-in;
   }
 
-  .fadein-leave {
+  .fadein-leave-active {
     animation: fadein-out 0.3s ease-out;
   }
 

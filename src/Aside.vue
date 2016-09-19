@@ -112,7 +112,7 @@
     animation: slideleft-in .3s;
   }
 
-  .slideleft-leave {
+  .slideleft-leave-active {
     animation: slideleft-out .3s;
   }
 
@@ -142,7 +142,7 @@
     animation: slideright-in .3s;
   }
 
-  .slideright-leave {
+  .slideright-leave-active {
     animation: slideright-out .3s;
   }
 

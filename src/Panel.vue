@@ -10,11 +10,13 @@
     </a>
     </h4>
     </div>
-    <div class="panel-collapse" v-el:panel v-show="isOpen" transition="collapse">
-      <div class="panel-body">
-        <slot></slot>
+    <transition name="collapse">
+      <div class="panel-collapse" v-show="isOpen">
+        <div class="panel-body">
+          <slot></slot>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -55,13 +57,13 @@
     cursor: pointer;
   }
 
-  .collapse-transition {
+  .collapse-enter-active, .collapse-leave-active {
     transition: max-height .5s ease;
     overflow: hidden;
   }
 
   .collapse-enter,
-  .collapse-leave {
+  .collapse-leave-active {
     max-height: 0!important;
   }
 </style>

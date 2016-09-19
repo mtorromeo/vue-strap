@@ -18,8 +18,11 @@
         </li>
       </template>
       <slot v-else></slot>
-      <div class="notify" v-show="showNotify" transition="fadein">Limit reached ({{limit}} items max).
-      </div>
+      <transition name="fadein">
+        <div class="notify" v-show="showNotify">
+          Limit reached ({{limit}} items max).
+        </div>
+      </transition>
     </ul>
   </div>
 </template>

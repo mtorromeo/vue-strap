@@ -27,8 +27,8 @@
   }
 </script>
 <style>
-  .scale-transition,
-  .fade-transition {
+  .scale-enter-active, .scale-leave-active,
+  .fade-enter-active, .fade-leave-active {
     display: block;
   }
 
@@ -36,7 +36,7 @@
     animation: scale-in 0.15s ease-in;
   }
 
-  .scale-leave {
+  .scale-leave-active {
     animation: scale-out 0.15s ease-out;
   }
 

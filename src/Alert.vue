@@ -70,12 +70,12 @@
 </script>
 
 <style>
-  .fade-transition {
+  .fade-enter-active, .fade-leave-active {
     transition: opacity .3s ease;
   }
 
   .fade-enter,
-  .fade-leave {
+  .fade-leave-active {
     height: 0;
     opacity: 0;
   }
