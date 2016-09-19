@@ -78,14 +78,3 @@
   </table>
   </div>
 </template>
-
-<script>
-  import carousel from 'src/Carousel.vue'
-  import slider from 'src/Slider.vue'
-  export default {
-    components: {
-      carousel,
-      slider
-    }
-  }
-</script>

@@ -1,55 +1,55 @@
-import alert from './Alert.vue';
-import carousel from './Carousel.vue';
-import slider from './Slider.vue';
-import accordion from './Accordion.vue';
-import affix from './Affix.vue';
-import aside from './Aside.vue';
-import checkboxGroup from './checkboxGroup.vue';
-import checkboxBtn from './checkboxBtn.vue';
-import datepicker from './Datepicker.vue';
-import dropdown from './Dropdown.vue';
-import dropdownLi from './DropdownLi.vue';
-import modal from './Modal.vue';
-import option from './Option.vue';
-import panel from './Panel.vue';
-import popover from './Popover.vue';
-import progressbar from './Progressbar.vue';
-import radioBtn from './radioBtn.vue';
-import radioGroup from './radioGroup.vue';
-import select from './Select.vue';
-import tab from './Tab.vue';
-import tabs from './Tabs.vue';
-import tooltip from './Tooltip.vue';
-import typeahead from './Typeahead.vue';
-import navbar from './Navbar.vue';
-import spinner from './Spinner.vue';
+import Alert from './Alert.vue';
+import Carousel from './Carousel.vue';
+import Slider from './Slider.vue';
+import Accordion from './Accordion.vue';
+import Affix from './Affix.vue';
+import Aside from './Aside.vue';
+import CheckboxGroup from './CheckboxGroup.vue';
+import Checkbox from './Checkbox.vue';
+import Datepicker from './Datepicker.vue';
+import Dropdown from './Dropdown.vue';
+import DropdownLi from './DropdownLi.vue';
+import Modal from './Modal.vue';
+import Option from './Option.vue';
+import Panel from './Panel.vue';
+import Popover from './Popover.vue';
+import Progressbar from './Progressbar.vue';
+import Radio from './Radio.vue';
+import RadioGroup from './RadioGroup.vue';
+import Select from './Select.vue';
+import Tab from './Tab.vue';
+import Tabs from './Tabs.vue';
+import Tooltip from './Tooltip.vue';
+import Typeahead from './Typeahead.vue';
+import Navbar from './Navbar.vue';
+import Spinner from './Spinner.vue';
 
-const VueStrap = {
-  alert,
-  carousel,
-  slider,
-  accordion,
-  affix,
-  aside,
-  checkboxBtn,
-  checkboxGroup,
-  datepicker,
-  dropdown,
-  dropdownLi,
-  modal,
-  option,
-  panel,
-  popover,
-  progressbar,
-  radioGroup,
-  radioBtn,
-  select,
-  tab,
-  tabs,
-  tooltip,
-  typeahead,
-  navbar,
-  spinner
+export default {
+  install(Vue) {
+    Vue.component(Alert, 'alert');
+    Vue.component(Carousel, 'carousel');
+    Vue.component(Slider, 'slider');
+    Vue.component(Accordion, 'accordion');
+    Vue.component(Affix, 'affix');
+    Vue.component(Aside, 'aside');
+    Vue.component(CheckboxGroup, 'checkbox-group');
+    Vue.component(Checkbox, 'checkbox');
+    Vue.component(Datepicker, 'datepicker');
+    Vue.component(Dropdown, 'dropdown');
+    Vue.component(DropdownLi, 'dropdown-li');
+    Vue.component(Modal, 'modal');
+    Vue.component(Option, 'option');
+    Vue.component(Panel, 'panel');
+    Vue.component(Popover, 'popover');
+    Vue.component(Progressbar, 'progressbar');
+    Vue.component(Radio, 'radio');
+    Vue.component(RadioGroup, 'radio-group');
+    Vue.component(Select, 'select');
+    Vue.component(Tab, 'tab');
+    Vue.component(Tabs, 'tabs');
+    Vue.component(Tooltip, 'tooltip');
+    Vue.component(Typeahead, 'typeahead');
+    Vue.component(Navbar, 'navbar');
+    Vue.component(Spinner, 'spinner');
+  },
 };
-
-module.exports = VueStrap;

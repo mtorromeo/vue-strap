@@ -163,33 +163,20 @@
 </template>
 
 <script>
-    import datepicker from 'src/Datepicker.vue';
-    import select from 'src/Select.vue';
-    import option from 'src/Option.vue';
-    import tabs from 'src/Tabs.vue';
-    import tab from 'src/Tab.vue';
-
     export default {
-        components: {
-                datepicker,
-                tabs,
-                tab,
-                'v-select': select,
-                'v-option': option
+        data() {
+            return {
+                disabled: [],
+                value: '01/01/2016',
+                format: ['dd/MM/yyyy'],
+                reset: true,
+                picker: true
+            }
+        },
+        methods: {
+            dateChanged(value) {
+                console.log(value);
             },
-            data() {
-                return {
-                    disabled: [],
-                    value: '01/01/2016',
-                    format: ['dd/MM/yyyy'],
-                    reset: true,
-                    picker: true
-                }
-            },
-            methods: {
-                dateChanged(value) {
-                    console.log(value);
-                },
-            },
+        },
     }
 </script>

@@ -19,7 +19,12 @@
         var id = tmp.getAttribute('data-target');
         var o = document.getElementById(id.substring(1));
         o.classList.toggle('collapse');
-      }
+      },
+      outerClick(e) {
+        if (!this.$el.contains(e.target)) {
+          this.$el.classList.remove('open');
+        }
+      },
     },
     ready() {
       const toggle = this.$el.querySelector('[data-toggle="collapse"]');
@@ -27,16 +32,10 @@
         toggle.style.borderRadius = '4px';
         toggle.addEventListener('click', this.toggleCollapse);
       }
-      this._closeEvent = EventListener.listen(window, 'click', (e) => {
-        if (!this.$el.contains(e.target)) {
-          this.$el.classList.remove('open');
-        }
-      })
+      window.addEventListener('click', this.outerClick);
     },
     beforeDestroy() {
-      if (this._closeEvent) {
-        this._closeEvent.remove();
-      }
-    }
+      window.removeEventListener('click', this.outerClick);
+    },
   }
 </script>

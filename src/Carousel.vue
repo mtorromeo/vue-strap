@@ -21,8 +21,6 @@
 </template>
 
 <script>
-  import EventListener from './utils/EventListener.js'
-
   export default {
     props: {
       indicators: {
@@ -70,22 +68,22 @@
       }
     },
     methods: {
+      transitionend() {
+        [...this.slider].forEach((el) => el.className = 'item');
+        selectedEl.classList.add('active');
+        this.isAnimating = false;
+      },
       slide(direction, selected, prev) {
         if (this._prevSelectedEvent) this._prevSelectedEvent.remove()
         if (this._selectedEvent) this._selectedEvent.remove()
 
-        const prevSelectedEl = this.slider[prev]
-        const selectedEl = this.slider[selected]
-        const transitionendFn = () => {
-          [...this.slider].forEach((el) => el.className = 'item')
-          selectedEl.classList.add('active')
-          this.isAnimating = false
-        }
+        const prevSelectedEl = this.slider[prev];
+        const selectedEl = this.slider[selected];
 
         direction === 'left' ? selectedEl.classList.add('next') : selectedEl.classList.add('prev')
           // request property that requires layout to force a layout
         var x = selectedEl.clientHeight
-        this._prevSelectedEvent = EventListener.listen(prevSelectedEl, 'transitionend', transitionendFn)
+        this._prevSelectedEvent = prevSelectedEl.addEventListener('transitionend', this.transitionend); EventListener.listen(prevSelectedEl, 'transitionend', transitionendFn)
         this._selectedEvent = EventListener.listen(selectedEl, 'transitionend', transitionendFn)
         prevSelectedEl.classList.add(direction)
         selectedEl.classList.add(direction)

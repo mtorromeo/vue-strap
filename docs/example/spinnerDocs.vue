@@ -26,7 +26,7 @@
     </div>
 
     <pre><code class="language-markup"><script type="language-mark-up">
-		<spinner id="spinner-box" :size="(sm,md,lg...)" :fixed="(true,false)" 
+		<spinner id="spinner-box" :size="(sm,md,lg...)" :fixed="(true,false)"
 			text="I will close in 2 secs" v-ref:spinner></spinner>
 	</script></code></pre>
 
@@ -61,8 +61,6 @@
 </template>
 
 <script>
-  import spinner from 'src/Spinner.vue';
-
   const sizes = [
     {
       text: 'sm',
@@ -83,9 +81,6 @@
         size: 'lg',
         sizes: sizes.concat({text: 'xl', value: 'xl'}),
       }
-    },
-    components: {
-      spinner
     },
     events: {
       'shown::spinner'(id) {

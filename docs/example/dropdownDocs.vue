@@ -84,17 +84,3 @@
     </tabs>
   </div>
 </template>
-
-<script>
-  import dropdown from 'src/Dropdown.vue'
-  import tabs from 'src/Tabs.vue';
-  import tab from 'src/Tab.vue';
-
-  export default {
-    components: {
-      dropdown,
-      tabs,
-      tab,
-    }
-  }
-</script>

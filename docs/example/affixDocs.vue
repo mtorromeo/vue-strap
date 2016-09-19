@@ -42,15 +42,6 @@
   </div>
 </template>
 
-<script>
-  import tooltip from 'src/Tooltip.vue'
-  export default {
-    components: {
-      tooltip
-    }
-  }
-</script>
-
 <style scoped>
 .animated {
     -webkit-animation-duration: 3s;

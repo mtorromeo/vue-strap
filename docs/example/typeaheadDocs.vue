@@ -5,8 +5,8 @@
       <h4>
         Static arrays
       </h4>
-      <typeahead 
-        :data="USstate" 
+      <typeahead
+        :data="USstate"
         placeholder="USA states"
       ></typeahead>
       <hr>
@@ -16,7 +16,7 @@
         <small style="cursor:pointer">(not working?)</small>
       </tooltip>
       </h4>
-      <typeahead 
+      <typeahead
         placeholder="CCCAddress, async via maps.googleapis.com"
         key="results"
         async="https://maps.googleapis.com/maps/api/geocode/json?address="
@@ -28,10 +28,10 @@
       <h4>
       Custom templates for results
       </h4>
-      <typeahead 
+      <typeahead
         placeholder="Github users, async via api.github.com"
         key="items"
-        async="https://api.github.com/search/users?q=" 
+        async="https://api.github.com/search/users?q="
         template-name="github"
         :template="githubTemplate"
         :on-hit="githubCallback"
@@ -155,15 +155,7 @@ new Vue {
 </template>
 
 <script>
-  import typeahead from 'src/Typeahead.vue'
-  import tooltip from 'src/Tooltip.vue'
   export default {
-    components: {
-      typeahead,
-      tooltip
-    },
-    partials: {
-    },
     data() {
       return {
         USstate: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],

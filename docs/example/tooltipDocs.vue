@@ -80,7 +80,6 @@
 </template>
 
 <script>
-  import tooltip from 'src/Tooltip.vue'
   export default {
     data() {
       return {
@@ -88,8 +87,5 @@
         text: 'Lorem ipsum dolor sit amet'
       }
     },
-    components: {
-      tooltip
-    }
   }
 </script>

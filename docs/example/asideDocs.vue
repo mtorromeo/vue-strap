@@ -98,11 +98,7 @@ class="btn btn-danger btn-lg"
 </template>
 
 <script>
-  import sidebar from 'src/Aside.vue'
   export default {
-    components: {
-      sidebar
-    },
     data() {
       return {
         showLeft: false,

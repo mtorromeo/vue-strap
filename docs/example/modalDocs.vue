@@ -220,7 +220,6 @@
 </template>
 
 <script>
-  import modal from 'src/Modal.vue'
   export default {
     data() {
       return {
@@ -232,8 +231,5 @@
         smallModal: false
       }
     },
-    components: {
-      modal
-    }
   }
 </script>

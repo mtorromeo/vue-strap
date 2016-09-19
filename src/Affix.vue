@@ -7,76 +7,71 @@
 </template>
 
 <script>
-  import EventListener from './utils/EventListener.js'
   export default {
     props: {
       offset: {
         type: Number,
-        default: 0
-      }
+        default: 0,
+      },
     },
     data() {
       return {
         affixed: false,
-        styles: {}
-      }
+        styles: {},
+      };
     },
     methods: {
       scrolling() {
-        const scrollTop = this.getScroll(window, true)
-        const elementOffset = this.getOffset(this.$el)
+        const scrollTop = this.getScroll(window, true);
+        const elementOffset = this.getOffset(this.$el);
         if (!this.affixed && scrollTop > elementOffset.top) {
-          this.affixed = true
+          this.affixed = true;
           this.styles = {
             top: this.offset + 'px',
             left: elementOffset.left + 'px',
-            width: this.$el.offsetWidth + 'px'
-          }
+            width: this.$el.offsetWidth + 'px',
+          };
         }
         if (this.affixed && scrollTop < elementOffset.top) {
-          this.affixed = false
-          this.styles = {}
+          this.affixed = false;
+          this.styles = {};
         }
       },
       // from https://github.com/ant-design/ant-design/blob/master/components/affix/index.jsx#L20
       getScroll(w, top) {
-        let ret = w['page' + (top ? 'Y' : 'X') + 'Offset']
-        const method = 'scroll' + (top ? 'Top' : 'Left')
+        let ret = w['page' + (top ? 'Y' : 'X') + 'Offset'];
+        const method = 'scroll' + (top ? 'Top' : 'Left');
         if (typeof ret !== 'number') {
-          const d = w.document
+          const d = w.document;
             // ie6,7,8 standard mode
-          ret = d.documentElement[method]
+          ret = d.documentElement[method];
           if (typeof ret !== 'number') {
             // quirks mode
-            ret = d.body[method]
+            ret = d.body[method];
           }
         }
-        return ret
+        return ret;
       },
       getOffset(element) {
-        const rect = element.getBoundingClientRect()
-        const body = document.body
-        const clientTop = element.clientTop || body.clientTop || 0
-        const clientLeft = element.clientLeft || body.clientLeft || 0
-        const scrollTop = this.getScroll(window, true)
-        const scrollLeft = this.getScroll(window)
+        const rect = element.getBoundingClientRect();
+        const body = document.body;
+        const clientTop = element.clientTop || body.clientTop || 0;
+        const clientLeft = element.clientLeft || body.clientLeft || 0;
+        const scrollTop = this.getScroll(window, true);
+        const scrollLeft = this.getScroll(window);
         return {
           top: rect.top + scrollTop - clientTop,
-          left: rect.left + scrollLeft - clientLeft
-        }
+          left: rect.left + scrollLeft - clientLeft,
+        };
       }
     },
-    ready() {
-      this._scrollEvent = EventListener.listen(window, 'scroll', this.scrolling)
-      this._resizeEvent = EventListener.listen(window, 'resize', this.scrolling)
+    mounted() {
+      window.addEventListener('scroll', this.scrolling);
+      window.addEventListener('resize', this.scrolling);
     },
     beforeDestroy() {
-      if (this._scrollEvent) {
-        this._scrollEvent.remove()
-      }
-      if (this._resizeEvent) {
-        this._resizeEvent.remove()
-      }
+      window.removeEventListener('scroll', this.scrolling);
+      window.removeEventListener('resize', this.scrolling);
     }
   }
 </script>

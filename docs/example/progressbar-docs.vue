@@ -119,16 +119,12 @@
 </template>
 
 <script>
-  import progressbar from 'src/Progressbar.vue'
   export default {
     data() {
       return {
         dynamicData: [5, 15, 25, 35, 45],
         stackedData: [10, 20, 30, 40],
       }
-    },
-    components: {
-      progressbar
     },
     methods: {
       dynamicClick() {

@@ -92,17 +92,6 @@
   </div>
 </template>
 
-<script>
-  import tabs from 'src/Tabs.vue'
-  import tab from 'src/Tab.vue'
-  export default {
-    components: {
-      tabs,
-      tab
-    }
-  }
-</script>
-
 <style scoped>
 .animated {
     -webkit-animation-duration: 3s;

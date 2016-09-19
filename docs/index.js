@@ -7,7 +7,6 @@ require('prismjs');
 require('./js/showLanguage');
 
 import gettingStarted from './example/gettingStarted.vue';
-import affix from 'src/Affix.vue';
 import container from './example/container.vue';
 import headerDocs from './example/headerDocs.vue';
 import alertDocs from './example/alertDocs.vue';
@@ -26,15 +25,16 @@ import tabsDocs from './example/tabsDocs.vue';
 import tooltipDocs from './example/tooltipDocs.vue';
 import typeaheadDocs from './example/typeaheadDocs.vue';
 import spinnerDocs from './example/spinnerDocs.vue';
+import VueStrap from '../src';
 
 Vue.config.debug = true;
+Vue.use(VueStrap);
 
 new Vue({
     el: '#wrapper',
     components: {
         gettingStarted,
         container,
-        affix,
         alertDocs,
         headerDocs,
         accordionDocs,

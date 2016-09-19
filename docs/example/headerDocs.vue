@@ -24,12 +24,3 @@
     </navbar>
   </header>
 </template>
-
-<script>
-  import navbar from 'src/Navbar.vue'
-  export default {
-    components: {
-      navbar
-    }
-  }
-</script>

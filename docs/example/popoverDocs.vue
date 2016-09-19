@@ -107,7 +107,6 @@
 </template>
 
 <script>
-  import popover from 'src/Popover.vue'
   export default {
     data() {
       return {
@@ -115,8 +114,5 @@
         text: 'Lorem ipsum dolor sit amet'
       }
     },
-    components: {
-      popover
-    }
   }
 </script>
