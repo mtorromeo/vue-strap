@@ -1,7 +1,7 @@
 <template>
-  <div class="aside" v-bind:style="{width:width + 'px'}" v-bind:class="{
-  left:placement === 'left',
-  right:placement === 'right'
+  <div class="aside" :style="{width: width + 'px'}" :class="{
+    left:  placement === 'left',
+    right: placement === 'right'
   }" v-show="show" :transition="(this.placement === 'left') ? 'slideleft' : 'slideright'">
     <div class="aside-dialog">
       <div class="aside-content">
@@ -22,60 +22,60 @@
 </template>
 
 <script>
-  import EventListener from './utils/EventListener.js'
-  import getScrollBarWidth from './utils/getScrollBarWidth.js'
+  import getScrollBarWidth from './utils/getScrollBarWidth.js';
 
   export default {
     props: {
       show: {
         type: Boolean,
         require: true,
-        twoWay: true
       },
       placement: {
         type: String,
-        default: 'right'
+        default: 'right',
       },
       header: {
-        type: String
+        type: String,
       },
       width: {
         type: Number,
-        default: '320'
-      }
+        default: '320',
+      },
     },
     watch: {
       show(val) {
-        let backdrop = document.createElement('div')
-        const body = document.body
-        backdrop.className = 'aside-backdrop'
-        const scrollBarWidth = getScrollBarWidth()
+        let backdrop = document.createElement('div');
+        backdrop.classList.add('aside-backdrop');
+        const scrollBarWidth = getScrollBarWidth();
         if (val) {
-          body.appendChild(backdrop)
-          body.classList.add('modal-open')
+          document.body.appendChild(backdrop);
+          document.body.classList.add('modal-open');
           if (scrollBarWidth !== 0) {
-            body.style.paddingRight = scrollBarWidth + 'px'
+            document.body.style.paddingRight = `${scrollBarWidth}px`;
           }
           // request property that requires layout to force a layout
-          var x = backdrop.clientHeight
-          backdrop.className += ' in'
-          this._clickEvent = EventListener.listen(backdrop, 'click', this.close)
+          var x = backdrop.clientHeight;
+          backdrop.classList.add('in');
+          backdrop.addEventListener('click', this.close);
+          this.$emit('open');
         } else {
-          if (this._clickEvent) this._clickEvent.remove()
-          backdrop = document.querySelector('.aside-backdrop')
+          backdrop.removeEventListener('click', this.close);
+          backdrop = document.querySelector('.aside-backdrop');
           try {
-            backdrop.className = 'aside-backdrop'
-            body.classList.remove('modal-open')
-            body.style.paddingRight = '0'
-            body.removeChild(backdrop)
+            backdrop.classList.add('aside-backdrop');
+            document.body.classList.remove('modal-open');
+            document.body.style.paddingRight = '0';
+            document.body.removeChild(backdrop);
           } catch (e) {}
+          this.$emit('close');
         }
-      }
+        this.$emit('visibility-change', val);
+      },
     },
     methods: {
       close() {
-        this.show = false
-      }
+        this.show = false;
+      },
     }
   }
 </script>

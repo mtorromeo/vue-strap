@@ -8,9 +8,11 @@
   export default {
     props: {
       name: String,
-      value: {
-        type: String,
-        twoWay: true,
+      value: String,
+    },
+    watch: {
+      value() {
+        this.$emit('input', this.value);
       },
     },
   };

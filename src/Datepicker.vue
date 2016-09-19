@@ -77,10 +77,7 @@
       placeholder: String,
       disabled: String,
       required: String,
-      value: {
-        type: String,
-        twoWay: true,
-      },
+      value: String,
       type: {
         type: String,
         default: 'text',
@@ -137,7 +134,7 @@
     },
     watch: {
       value() {
-        this.$emit('change', this.value);
+        this.$emit('input', this.value);
       },
       format(format, old) {
         const date = this.parse(this.value, old);

@@ -36,9 +36,7 @@
           return [];
         },
       },
-      value: {
-        twoWay: true,
-      },
+      value: [String, Array],
       placeholder: {
         type: String,
         default: 'Nothing Selected',
@@ -128,6 +126,7 @@
           this.value.pop();
           setTimeout(() => this.showNotify = false, 1000);
         }
+        this.$emit('input', this.value);
       },
     },
     methods: {

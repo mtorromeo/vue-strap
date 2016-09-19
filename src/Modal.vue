@@ -71,7 +71,6 @@
       show: {
         require: true,
         type: Boolean,
-        twoWay: true,
       },
       width: {
         default: null,
@@ -219,6 +218,7 @@
               this.$emit('close');
             }, 300);
           }
+          this.$emit('visibility-change', val);
         },
         immediate: true,
       },
