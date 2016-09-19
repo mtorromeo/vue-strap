@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <h4 class="panel-title">
     <a class="accordion-toggle"
-      @click="toggleIsOpen()">
+      @click="isOpen = !isOpen">
       <slot name="header">
       {{ header }}
       </slot>
@@ -25,30 +25,27 @@
     props: {
       isOpen: {
         type: Boolean,
-        default: false
+        default: false,
       },
-      header: {
-        type: String
-      }
+      header: String,
     },
-    methods: {
-      toggleIsOpen() {
-        this.isOpen = !this.isOpen
-        this.$dispatch('isOpenEvent', this)
+    watch: {
+      isOpen() {
+        this.$emit('visibility-change', this.isOpen);
       }
     },
     transitions: {
       collapse: {
-        afterEnter: function afterEnter(el) {
+        afterEnter(el) {
           el.style.maxHeight = "";
         },
-        beforeLeave: function beforeLeave(el) {
-          el.style.maxHeight = el.offsetHeight + "px";
+        beforeLeave(el) {
+          el.style.maxHeight = `${el.offsetHeight}px`;
           // Recalculate DOM before the class gets added.
           return el.offsetHeight;
-        }
+        },
       }
-    }
+    },
   }
 </script>
 

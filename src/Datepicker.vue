@@ -126,7 +126,6 @@
       if (!this.value) {
         this.clear();
       }
-      this.$dispatch('child-created', this);
       window.addEventListener('click', this.close);
     },
     beforeDestroy() {

@@ -59,30 +59,14 @@
         // activate spinner
         this._started = new Date();
         this.active = true;
-        this.$root.$broadcast('shown::spinner');
       },
       hide() {
         const delay = 0;
         this._spinnerAnimation = setTimeout(() => {
-          this.active = false
-          document.body.style.overflowY = this._bodyOverflow
-          this.$root.$broadcast('hidden::spinner')
+          this.active = false;
+          document.body.style.overflowY = this._bodyOverflow;
         }, this.getMinWait(delay));
       }
-    },
-    events: {
-      'show::spinner'(options) {
-        this.show(options);
-      },
-      'hide::spinner'() {
-        this.hide();
-      },
-      'start::ajax'(options) {
-        this.show(options);
-      },
-      'end::ajax'() {
-        this.hide();
-      },
     },
     destroyed() {
       clearTimeout(this._spinnerAnimation);
