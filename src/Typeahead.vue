@@ -17,7 +17,7 @@
 
   export default {
     partials: {
-      'default': '<span v-html="item | highlight query"></span>',
+      default: '<span v-html="highlight(item, query)"></span>',
     },
     props: {
       data: {
@@ -127,9 +127,7 @@
       },
       down() {
         if (this.current < this.items.length - 1) this.current++;
-      }
-    },
-    filters: {
+      },
       highlight(value, phrase) {
         return value.replace(new RegExp('(' + phrase + ')', 'gi'), '<strong>$1</strong>');
       },

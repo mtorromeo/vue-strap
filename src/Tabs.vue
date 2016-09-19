@@ -4,7 +4,7 @@
     <ul v-el:tabs-container class="nav nav-{{navStyle}}" role="tablist">
       <dropdown-li v-show="overflowIndex" v-el:dropdown class="pull-right tabdrop" :class="{'active': active >= overflowIndex}">
         <ul slot="dropdown-menu" class="dropdown-menu">
-          <li v-for="tab in $children | orderBy 'index'" v-if="isDropdownTab(tab)" @click.prevent="tabclick(tab)" :disabled="tab.disabled">
+          <li v-for="tab in sortedChildren" v-if="isDropdownTab(tab)" @click.prevent="tabclick(tab)" :disabled="tab.disabled">
             <a href="#">
               <span v-if="tab.icon" :class="[iconset, iconset + '-' + tab.icon]"></span>
               {{{tab.header}}}
@@ -13,7 +13,7 @@
         </ul>
       </dropdown-li>
 
-      <li v-for="tab in $children | orderBy 'index'" :class="{
+      <li v-for="tab in sortedChildren" :class="{
         'active': (tab.index === active),
         'disabled': tab.disabled
       }" @click.prevent="tabclick(tab)" :disabled="tab.disabled" v-if="isRegularTab(tab)">
@@ -70,6 +70,19 @@
     },
     mounted() {
       this.$nextTick(this.init);
+    },
+    computed: {
+      sortedChildren() {
+        return this.$children.sort(a, b => {
+          if (a.index < b.index) {
+            return -1;
+          }
+          if (a.index > b.index) {
+            return 1;
+          }
+          return 0;
+        });
+      },
     },
     watch: {
       active() {

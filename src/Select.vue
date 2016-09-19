@@ -10,7 +10,7 @@
         <li v-if="search" class="bs-searchbox">
           <input type="text" placeholder="Search" v-model="searchText" class="form-control" autocomplete="off">
         </li>
-        <li v-for="option in options | filterBy searchText " v-bind:id="option.value" style="position:relative">
+        <li v-for="option in filteredOptions" v-bind:id="option.value" style="position:relative">
           <a @mousedown.prevent="select(option.value)" style="cursor:pointer">
       {{ option.label }}
       <span :class="[iconset, iconset + '-ok']" class="check-mark" v-show="isSelected(option.value)"></span>
@@ -113,6 +113,9 @@
       },
       showPlaceholder() {
         return this.value.length === 0;
+      },
+      filteredOptions() {
+        return this.options.filter(o => o.indexOf(searchText) > -1);
       },
     },
     watch: {
