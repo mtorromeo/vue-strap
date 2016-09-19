@@ -13,7 +13,9 @@
       <slot name="title">{{title}}</slot>
     </h3>
     <div class="popover-content">
-      <slot name="content">{{{content}}}</slot>
+      <slot name="content">
+        <template v-html="content"></template>
+      </slot>
     </div>
   </div>
 </template>

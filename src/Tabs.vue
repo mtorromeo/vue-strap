@@ -7,7 +7,7 @@
           <li v-for="tab in sortedChildren" v-if="isDropdownTab(tab)" @click.prevent="tabclick(tab)" :disabled="tab.disabled">
             <a href="#">
               <span v-if="tab.icon" :class="[iconset, iconset + '-' + tab.icon]"></span>
-              {{{tab.header}}}
+              <template v-html="tab.header"></template>
             </a>
           </li>
         </ul>
@@ -19,7 +19,7 @@
       }" @click.prevent="tabclick(tab)" :disabled="tab.disabled" v-if="isRegularTab(tab)">
         <a class="tab" href="#">
           <span v-if="tab.icon"  :class="[iconset, iconset + '-' + tab.icon]"></span>
-          {{{tab.header}}}
+          <template v-html="tab.header"></template>
         </a>
       </li>
     </ul>
@@ -69,7 +69,7 @@
       window.removeEventListener('resize', this.timedReflow);
     },
     mounted() {
-      this.$nextTick(this.init);
+      this.$nextTick(this.initTabs);
     },
     computed: {
       sortedChildren() {
@@ -151,10 +151,10 @@
         if (!this.$refs.tabContent.$el) {
           return;
         }
-        this.init();
+        this.initTabs();
       },
 
-      init() {
+      initTabs() {
         this.sortTabs();
         this.timedReflow();
       },

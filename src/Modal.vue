@@ -25,13 +25,15 @@
               &times;
             </button>
             <h4 class="modal-title">
-              <slot name="title">{{{title}}}</slot>
+              <slot name="title">
+                <template v-html="title"></template>
+              </slot>
             </h4>
           </div>
         </slot>
 
         <slot name="modal-body">
-          <div class="modal-body">{{{body}}}</div>
+          <div class="modal-body" v-html="body"></div>
         </slot>
 
         <slot name="modal-footer">

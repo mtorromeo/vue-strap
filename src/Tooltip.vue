@@ -10,7 +10,9 @@
   }" ref="popover" v-show="show" :transition="effect" role="tooltip">
     <div class="tooltip-arrow"></div>
     <div class="tooltip-inner">
-      <slot name="content">{{{content}}}</slot>
+      <slot name="content">
+        <template v-html="content"></template>
+      </slot>
     </div>
   </div>
 </template>
@@ -27,8 +29,8 @@
       effect: {
         type: String,
         default: 'scale'
-      }
-    }
+      },
+    },
   }
 </script>
 

@@ -38,13 +38,12 @@
     },
     components: {
       indicator: {
-        //inherit: true,
         props: [
           'indicator',
           'activeIndex',
           'isAnimating',
         ],
-        template: '<li v-for="(i, index) in indicator" @click="onClick(index)" v-bind:class="{\'active\':index === activeIndex}"><span></span></li>',
+        template: '<li v-for="(item, index) in indicator" @click="onClick(index)" :class="{\'active\': index === activeIndex}"><span></span></li>',
         methods: {
           onClick(index) {
             if (this.isAnimating || this.activeIndex === index) {
