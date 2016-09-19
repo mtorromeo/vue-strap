@@ -40,9 +40,9 @@
             <p @click="switchDecadeView">{{stringifyYearHeader(date)}}</p>
           </div>
           <div class="datepicker-monthRange">
-            <span v-for="m in monthNames" :class="{
+            <span v-for="(m, index) in monthNames" :class="{
               'datepicker-dateRange-item-active': monthNames[month]  === m
-            }" @click="monthSelect($index)">
+            }" @click="monthSelect(index)">
               {{m.substr(0,3)}}
             </span>
           </div>

@@ -25,28 +25,34 @@
     props: {
       indicators: {
         type: Boolean,
-        default: true
+        default: true,
       },
       controls: {
         type: Boolean,
-        default: true
+        default: true,
       },
       interval: {
         type: Number,
-        default: 5000
-      }
+        default: 5000,
+      },
     },
     components: {
-      'indicator': {
+      indicator: {
         //inherit: true,
-        props: ['indicator', 'activeIndex', 'isAnimating'],
-        template: '<li v-for="i in indicator" @click="handleIndicatorClick($index)" v-bind:class="{\'active\':$index === activeIndex}"><span></span></li>',
+        props: [
+          'indicator',
+          'activeIndex',
+          'isAnimating',
+        ],
+        template: '<li v-for="(i, index) in indicator" @click="onClick(index)" v-bind:class="{\'active\':index === activeIndex}"><span></span></li>',
         methods: {
-          handleIndicatorClick(index) {
-            if (this.isAnimating || this.activeIndex === index) return false
-            this.isAnimating = true
-            this.activeIndex = index
-          }
+          onClick(index) {
+            if (this.isAnimating || this.activeIndex === index) {
+              return false;
+            }
+            this.isAnimating = true;
+            this.activeIndex = index;
+          },
         },
       }
     },
@@ -54,18 +60,18 @@
       return {
         indicator: [],
         activeIndex: 0,
-        isAnimating: false
-      }
+        isAnimating: false,
+      };
     },
     computed: {
       slider() {
-        return this.$el.querySelectorAll('.item')
-      }
+        return this.$el.querySelectorAll('.item');
+      },
     },
     watch: {
       activeIndex(newVal, oldVal) {
-        newVal > oldVal ? this.slide('left', newVal, oldVal) : this.slide('right', newVal, oldVal)
-      }
+        this.slide(newVal > oldVal ? 'left' : 'right', newVal, oldVal);
+      },
     },
     methods: {
       transitionend() {
@@ -97,7 +103,7 @@
         if (this.isAnimating) return false
         this.isAnimating = true
         this.activeIndex === 0 ? this.activeIndex = this.slider.length - 1 : this.activeIndex -= 1
-      }
+      },
     },
     ready() {
       let intervalID = null
@@ -112,8 +118,7 @@
         el.addEventListener('mouseleave', () => intervalManager(true, this.nextClick, this.interval))
       }
     },
-
-  }
+  };
 </script>
 
 <style scoped>
