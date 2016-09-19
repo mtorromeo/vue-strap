@@ -1,17 +1,17 @@
 <template>
-    <div class="btn-group" data-toggle="buttons">
-        <slot></slot>
-    </div>
+  <div class="btn-group" data-toggle="buttons">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
-    export default {
-        props: {
-            name: String,
-            value: {
-                type: String,
-                twoWay: true,
-            },
-        },
-    };
+  export default {
+    props: {
+      name: String,
+      value: {
+        type: String,
+        twoWay: true,
+      },
+    },
+  };
 </script>

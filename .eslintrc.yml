@@ -54,7 +54,7 @@ rules:
   id-blacklist: error
   id-length: 'off'
   id-match: error
-  indent: [error, 4]
+  indent: [error, 2]
   init-declarations: error
   jsx-quotes: error
   key-spacing: error
