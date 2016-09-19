@@ -1,5 +1,5 @@
 <template>
-  <div class="spinner spinner-gritcode {{spinnerSize}} {{fixed ? 'spinner-fixed' : ''}}" v-show="active">
+  <div class="spinner spinner-gritcode" :class="[spinnerSize, {'spinner-fixed': fixed}]" v-show="active">
     <div class="spinner-wrapper">
       <div class="spinner-circle"></div>
       <div class="spinner-text">{{text}}</div>

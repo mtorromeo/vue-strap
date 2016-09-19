@@ -1,6 +1,6 @@
 <template>
-  <div class="btn-group" v-bind:class="{open: show}">
-    <button ref="btn" type="button" class="btn btn-default dropdown-toggle" @click="toggleDropdown" @blur="show = (search ? show : false)" v-bind="{disabled: disabled}">
+  <div class="btn-group" :class="{open: show}">
+    <button ref="btn" type="button" class="btn btn-default dropdown-toggle" @click="toggleDropdown" @blur="show = (search ? show : false)" :disabled="disabled">
       <span class="btn-placeholder" v-show="showPlaceholder">{{placeholder}}</span>
       <span class="btn-content">{{ selectedItems }}</span>
       <span class="caret"></span>
@@ -10,7 +10,7 @@
         <li v-if="search" class="bs-searchbox">
           <input type="text" placeholder="Search" v-model="searchText" class="form-control" autocomplete="off">
         </li>
-        <li v-for="option in filteredOptions" v-bind:id="option.value" style="position:relative">
+        <li v-for="option in filteredOptions" :id="option.value" style="position:relative">
           <a @mousedown.prevent="select(option.value)" style="cursor:pointer">
       {{ option.label }}
       <span :class="[iconset, iconset + '-ok']" class="check-mark" v-show="isSelected(option.value)"></span>
@@ -140,7 +140,8 @@
           }
         } else {
           if (this.multiple) {
-            this.value.$remove(v);
+            const index = this.value.indexOf(v);
+            this.value.splice(index, 1);
           }
         }
         if (this.closeOnSelect) {

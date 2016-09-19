@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Nav tabs -->
-    <ul ref="tabs-container" class="nav nav-{{navStyle}}" role="tablist">
+    <ul ref="tabs-container" class="nav" :class="['nav-' + navStyle]" role="tablist">
       <dropdown-li v-show="overflowIndex" ref="dropdown" class="pull-right tabdrop" :class="{'active': active >= overflowIndex}">
         <ul slot="dropdown-menu" class="dropdown-menu">
           <li v-for="tab in sortedChildren" v-if="isDropdownTab(tab)" @click.prevent="tabclick(tab)" :disabled="tab.disabled">
