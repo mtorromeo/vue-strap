@@ -1,19 +1,16 @@
 <template>
-  <span v-el:trigger>
-  <slot>
-  </slot>
+  <span ref="trigger">
+    <slot></slot>
   </span>
   <div class="tooltip" v-bind:class="{
-    'top':  placement === 'top',
+    'top':    placement === 'top',
     'left':   placement === 'left',
     'right':  placement === 'right',
-    'bottom': placement === 'bottom'
-  }" v-el:popover v-show="show" :transition="effect" role="tooltip">
+    'bottom': placement === 'bottom',
+  }" ref="popover" v-show="show" :transition="effect" role="tooltip">
     <div class="tooltip-arrow"></div>
     <div class="tooltip-inner">
-      <slot name="content">
-        {{{content}}}
-      </slot>
+      <slot name="content">{{{content}}}</slot>
     </div>
   </div>
 </template>

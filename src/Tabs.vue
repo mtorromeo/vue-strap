@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- Nav tabs -->
-    <ul v-el:tabs-container class="nav nav-{{navStyle}}" role="tablist">
-      <dropdown-li v-show="overflowIndex" v-el:dropdown class="pull-right tabdrop" :class="{'active': active >= overflowIndex}">
+    <ul ref="tabs-container" class="nav nav-{{navStyle}}" role="tablist">
+      <dropdown-li v-show="overflowIndex" ref="dropdown" class="pull-right tabdrop" :class="{'active': active >= overflowIndex}">
         <ul slot="dropdown-menu" class="dropdown-menu">
           <li v-for="tab in sortedChildren" v-if="isDropdownTab(tab)" @click.prevent="tabclick(tab)" :disabled="tab.disabled">
             <a href="#">
@@ -25,7 +25,7 @@
     </ul>
 
     <!-- Tab panes -->
-    <div v-el:tab-content class="tab-content">
+    <div ref="tab-content" class="tab-content">
       <slot></slot>
     </div>
   </div>
@@ -123,10 +123,10 @@
       },
 
       findFirstOverflow(verify) {
-        const tabs = [].slice.call(this.$els.tabsContainer.children);
+        const tabs = [].slice.call(this.$refs.tabsContainer.$el.children);
         let i = 0;
         for (const tab of tabs) {
-          if (tab.nodeName != 'LI' || tab == this.$els.dropdown) {
+          if (tab.nodeName != 'LI' || tab == this.$refs.dropdown.$el) {
             continue;
           }
           if (tab.offsetTop > 0) {
@@ -148,7 +148,7 @@
       },
 
       registerTab(tab) {
-        if (!this.$els.tabContent) {
+        if (!this.$refs.tabContent.$el) {
           return;
         }
         this.init();
@@ -161,7 +161,7 @@
 
       sortTabs() {
         let index = 0;
-        const children = [].slice.call(this.$els.tabContent.children);
+        const children = [].slice.call(this.$refs.tabContent.$el.children);
         for (const pane of children) {
           for (const tab of this.$children) {
             if (tab.$el == pane) {

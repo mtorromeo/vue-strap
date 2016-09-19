@@ -43,12 +43,12 @@ export default {
     },
   },
   mounted() {
-    if (!this.$els.popover) {
+    if (!this.$refs.popover.$el) {
       console.error('Couldn\'t find popover v-el in your component that uses popoverMixin.');
       return;
     }
-    const popover = this.$els.popover;
-    const trig = this.$els.trigger.children[0];
+    const popover = this.$refs.popover.$el;
+    const trig = this.$refs.trigger.$el.children[0];
     if (this.trigger === 'hover') {
       trig.addEventListener('mouseenter', this.display);
       trig.addEventListener('mouseleave', this.hide);
@@ -85,7 +85,7 @@ export default {
     this.show = !this.show;
   },
   beforeDestroy() {
-    const trig = this.$els.trigger.children[0];
+    const trig = this.$refs.trigger.$el.children[0];
     trig.removeEventListener('mouseenter', this.display);
     trig.removeEventListener('mouseleave', this.hide);
     trig.removeEventListener('focus', this.display);

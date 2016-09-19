@@ -17,7 +17,7 @@
       'modal-lg':   large,
       'modal-sm':   small,
     }" role="document" :style="{width: optionalWidth}">
-      <div v-el:modal-content class="modal-content">
+      <div ref="modal-content" class="modal-content">
         <slot name="modal-header">
           <div class="modal-header"
              @mousedown="startDrag" @touchstart="startDrag">
@@ -201,7 +201,7 @@
         handler(val) {
           const body = document.body;
           if (val) {
-            this.$els.modalContent.focus();
+            this.$refs.modalContent.$el.focus();
             this.display = true;
             body.classList.add('modal-open');
             const scrollBarWidth = getScrollBarWidth();

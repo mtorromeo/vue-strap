@@ -1,7 +1,7 @@
 <template>
   <div style="position: relative" v-bind:class="{'open':showDropdown}">
     <input type="text" class="form-control" :placeholder="placeholder" autocomplete="off" v-model="query" @input="update" @keydown.up="up" @keydown.down="down" @keydown.enter="hit" @keydown.esc="reset" @blur="showDropdown = false" />
-    <ul class="dropdown-menu" v-el:dropdown>
+    <ul class="dropdown-menu" ref="dropdown">
       <li v-for="(item, index) in items" v-bind:class="{'active': isActive(index)}">
         <a @mousedown.prevent="hit" @mousemove="setActive(index)">
           <partial :name="templateName"></partial>

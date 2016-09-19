@@ -3,7 +3,7 @@
     <div :class="{
       'input-group': (showResetButton || showPickerButton) && type != 'hidden'
     }">
-      <input v-el:input :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="formattedValue">
+      <input ref="input" :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="formattedValue">
       <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
         &times;
       </a>
@@ -15,7 +15,7 @@
       </a>
     </div>
 
-    <div v-el:popup class="datepicker-popup panel" tabindex="-1" @blur="close" v-if="displayDayView || displayMonthView || displayYearView">
+    <div ref="popup" class="datepicker-popup panel" tabindex="-1" @blur="close" v-if="displayDayView || displayMonthView || displayYearView">
       <div class="datepicker-inner" v-show="displayDayView">
         <div class="datepicker-body">
           <div class="datepicker-ctrl">

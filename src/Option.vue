@@ -1,7 +1,7 @@
 <template>
   <li style="position:relative">
     <a @mousedown.prevent="handleClick" style="cursor:pointer">
-      <span v-el:v><slot></slot></span>
+      <span ref="v"><slot></slot></span>
       <span :class="[iconset, iconset + '-ok']" class="check-mark" v-show="chosen"></span>
     </a>
   </li>
