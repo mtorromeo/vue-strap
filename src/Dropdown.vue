@@ -40,7 +40,7 @@
         this.$el.classList.remove('open');
       },
     },
-    compiled() {
+    mounted() {
       this._toggle = this.$el.querySelector('[data-toggle="dropdown"]');
       if (this._toggle) {
         this._toggle.addEventListener('click', this.toggle);

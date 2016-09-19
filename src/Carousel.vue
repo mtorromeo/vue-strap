@@ -80,42 +80,39 @@
         this.isAnimating = false;
       },
       slide(direction, selected, prev) {
-        if (this._prevSelectedEvent) this._prevSelectedEvent.remove()
-        if (this._selectedEvent) this._selectedEvent.remove()
-
         const prevSelectedEl = this.slider[prev];
         const selectedEl = this.slider[selected];
 
-        direction === 'left' ? selectedEl.classList.add('next') : selectedEl.classList.add('prev')
-          // request property that requires layout to force a layout
-        var x = selectedEl.clientHeight
-        this._prevSelectedEvent = prevSelectedEl.addEventListener('transitionend', this.transitionend); EventListener.listen(prevSelectedEl, 'transitionend', transitionendFn)
-        this._selectedEvent = EventListener.listen(selectedEl, 'transitionend', transitionendFn)
-        prevSelectedEl.classList.add(direction)
-        selectedEl.classList.add(direction)
+        selectedEl.classList.add(direction === 'left' ? 'next' : 'prev');
+        // request property that requires layout to force a layout
+        var x = selectedEl.clientHeight;
+        prevSelectedEl.addEventListener('transitionend', this.transitionend);
+        prevSelectedEl.addEventListener('transitionend', this.transitionend);
+        prevSelectedEl.classList.add(direction);
+        selectedEl.classList.add(direction);
       },
       nextClick() {
-        if (this.isAnimating) return false
-        this.isAnimating = true
-        this.activeIndex + 1 < this.slider.length ? this.activeIndex += 1 : this.activeIndex = 0
+        if (this.isAnimating) return false;
+        this.isAnimating = true;
+        this.activeIndex = this.activeIndex + 1 < this.slider.length ? this.activeIndex + 1 : 0;
       },
       prevClick() {
-        if (this.isAnimating) return false
-        this.isAnimating = true
-        this.activeIndex === 0 ? this.activeIndex = this.slider.length - 1 : this.activeIndex -= 1
+        if (this.isAnimating) return false;
+        this.isAnimating = true;
+        this.activeIndex = this.activeIndex === 0 ? this.slider.length - 1 : this.activeIndex - 1;
       },
     },
-    ready() {
+    mounted() {
       let intervalID = null
       const el = this.$el
 
       function intervalManager(flag, func, time) {
         flag ? intervalID = setInterval(func, time) : clearInterval(intervalID)
       }
-      if (!!this.interval) {
-        intervalManager(true, this.nextClick, this.interval)
-        el.addEventListener('mouseenter', () => intervalManager(false))
-        el.addEventListener('mouseleave', () => intervalManager(true, this.nextClick, this.interval))
+      if (this.interval) {
+        intervalManager(true, this.nextClick, this.interval);
+        el.addEventListener('mouseenter', () => intervalManager(false));
+        el.addEventListener('mouseleave', () => intervalManager(true, this.nextClick, this.interval));
       }
     },
   };

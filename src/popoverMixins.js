@@ -1,4 +1,4 @@
-const PopoverMixin = {
+export default {
   props: {
     trigger: {
       type: String,
@@ -42,7 +42,7 @@ const PopoverMixin = {
       this.show = false;
     },
   },
-  ready() {
+  mounted() {
     if (!this.$els.popover) {
       console.error('Couldn\'t find popover v-el in your component that uses popoverMixin.');
       return;
@@ -93,5 +93,3 @@ const PopoverMixin = {
     trig.removeEventListener('click', this.toggle);
   },
 };
-
-export default PopoverMixin;

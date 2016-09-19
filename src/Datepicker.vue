@@ -95,7 +95,7 @@
       disabledDaysOfWeek: {
         type: Array,
         default () {
-          return []
+          return [];
         },
       },
       showResetButton: {
@@ -122,10 +122,10 @@
           'April', 'May', 'June',
           'July', 'August', 'September',
           'October', 'November', 'December'
-        ]
-      }
+        ],
+      };
     },
-    compiled() {
+    mounted() {
       if (!this.value) {
         this.clear();
       }

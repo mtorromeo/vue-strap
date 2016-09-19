@@ -15,53 +15,50 @@
 <script>
   import callAjax from './utils/callAjax.js'
 
-  const typeahead = {
-    created() {
-      this.items = this.primitiveData
-    },
+  export default {
     partials: {
       'default': '<span v-html="item | highlight query"></span>',
     },
     props: {
       data: {
-        type: Array
+        type: Array,
       },
       limit: {
         type: Number,
-        default: 8
+        default: 8,
       },
       async: {
-        type: String
+        type: String,
       },
       template: {
-        type: String
+        type: String,
       },
       templateName: {
         type: String,
-        default: 'default'
+        default: 'default',
       },
       key: {
         type: String,
-        default: null
+        default: null,
       },
       matchCase: {
         type: Boolean,
-        default: false
+        default: false,
       },
       matchStart: {
         type: Boolean,
-        default: false
+        default: false,
       },
       onHit: {
         type: Function,
         default (items) {
-          this.reset()
-          this.query = items
-        }
+          this.reset();
+          this.query = items;
+        },
       },
       placeholder: {
-        type: String
-      }
+        type: String,
+      },
     },
     data() {
       return {
@@ -70,7 +67,7 @@
         noResults: true,
         current: 0,
         items: [],
-      }
+      };
     },
     computed: {
       primitiveData() {
@@ -79,14 +76,17 @@
             value = this.matchCase ? value : value.toLowerCase();
             var query = this.matchCase ? this.query : this.query.toLowerCase();
             return this.matchStart ? value.indexOf(query) === 0 : value.indexOf(query) !== -1;
-          }).slice(0, this.limit)
+          }).slice(0, this.limit);
         }
       }
     },
-    ready() {
+    created() {
+      this.items = this.primitiveData;
+    },
+    mounted() {
       // register a partial:
       if (this.templateName && this.templateName !== 'default') {
-        Vue.partial(this.templateName, this.template)
+        Vue.partial(this.templateName, this.template);
       }
     },
     methods: {
@@ -107,35 +107,34 @@
         }
       },
       reset() {
-        this.items = []
-        this.query = ''
-        this.loading = false
-        this.showDropdown = false
+        this.items = [];
+        this.query = '';
+        this.loading = false;
+        this.showDropdown = false;
       },
       setActive(index) {
-        this.current = index
+        this.current = index;
       },
       isActive(index) {
-        return this.current === index
+        return this.current === index;
       },
       hit(e) {
         e.preventDefault()
         this.onHit(this.items[this.current], this);
       },
       up() {
-        if (this.current > 0) this.current--
+        if (this.current > 0) this.current--;
       },
       down() {
-        if (this.current < this.items.length - 1) this.current++
+        if (this.current < this.items.length - 1) this.current++;
       }
     },
     filters: {
       highlight(value, phrase) {
-        return value.replace(new RegExp('(' + phrase + ')', 'gi'), '<strong>$1</strong>')
-      }
-    }
-  }
-  export default typeahead
+        return value.replace(new RegExp('(' + phrase + ')', 'gi'), '<strong>$1</strong>');
+      },
+    },
+  };
 </script>
 
 <style>

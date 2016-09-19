@@ -26,7 +26,7 @@
         }
       },
     },
-    ready() {
+    mounted() {
       const toggle = this.$el.querySelector('[data-toggle="collapse"]');
       if (toggle) {
         toggle.style.borderRadius = '4px';

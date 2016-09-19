@@ -119,11 +119,6 @@
         },
       };
     },
-    compiled() {
-      this.$watch('show', this.watchShow, {
-        immediate: true,
-      });
-    },
     computed: {
       draggable() {
         return !this.backdrop && this.movable;
@@ -163,26 +158,6 @@
           this.cancel();
         }
       },
-      watchShow(val) {
-        const body = document.body;
-        if (val) {
-          this.$els.modalContent.focus();
-          this.display = true;
-          body.classList.add('modal-open');
-          const scrollBarWidth = getScrollBarWidth();
-          if (scrollBarWidth !== 0) {
-            body.style.paddingRight = scrollBarWidth + 'px';
-          }
-          this.$emit('open');
-        } else {
-          setTimeout(() => {
-            this.display = false;
-            body.classList.remove('modal-open');
-            body.style.paddingRight = '0';
-            this.$emit('close');
-          }, 300);
-        }
-      },
       startDrag(e) {
         if (!this.draggable || (!e.changedTouches && e.button != 0)) {
           return;
@@ -220,7 +195,32 @@
         document.body.removeEventListener('mouseup', this.stopDrag);
         document.body.removeEventListener('touchend', this.stopDrag);
       },
-    }
+    },
+    watch: {
+      show: {
+        handler(val) {
+          const body = document.body;
+          if (val) {
+            this.$els.modalContent.focus();
+            this.display = true;
+            body.classList.add('modal-open');
+            const scrollBarWidth = getScrollBarWidth();
+            if (scrollBarWidth !== 0) {
+              body.style.paddingRight = scrollBarWidth + 'px';
+            }
+            this.$emit('open');
+          } else {
+            setTimeout(() => {
+              this.display = false;
+              body.classList.remove('modal-open');
+              body.style.paddingRight = '0';
+              this.$emit('close');
+            }, 300);
+          }
+        },
+        immediate: true,
+      },
+    },
   }
 </script>
 <style>

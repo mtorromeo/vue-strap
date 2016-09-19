@@ -68,9 +68,8 @@
     beforeDestroy() {
       window.removeEventListener('resize', this.timedReflow);
     },
-    ready() {
-      this.sortTabs();
-      this.timedReflow();
+    mounted() {
+      this.$nextTick(this.init);
     },
     watch: {
       active() {
@@ -139,7 +138,10 @@
         if (!this.$els.tabContent) {
           return;
         }
+        this.init();
+      },
 
+      init() {
         this.sortTabs();
         this.timedReflow();
       },

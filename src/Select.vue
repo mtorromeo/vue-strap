@@ -30,53 +30,53 @@
       options: {
         type: Array,
         default () {
-          return []
+          return [];
         },
       },
       value: {
-        twoWay: true
+        twoWay: true,
       },
       placeholder: {
         type: String,
-        default: 'Nothing Selected'
+        default: 'Nothing Selected',
       },
       multiple: {
         type: Boolean,
-        default: false
+        default: false,
       },
       search: { // Allow searching (only works when options are provided)
         type: Boolean,
-        default: false
+        default: false,
       },
       limit: {
         type: Number,
-        default: 1024
+        default: 1024,
       },
       closeOnSelect: { // only works when multiple==false
         type: Boolean,
-        default: false
+        default: false,
       },
       disabled: {
         type: Boolean,
-        default: false
+        default: false,
       },
       iconset: {
         type: String,
         default: 'glyphicon',
       },
     },
-    ready() {
+    mounted() {
       if (this.value.constructor !== Array) {
         if (this.value.length === 0) {
-          this.value = []
+          this.value = [];
         } else {
-          this.value = [this.value]
+          this.value = [this.value];
         }
       } else {
         if (!this.multiple && this.value.length > 1) {
-          this.value = this.value.slice(0, 1)
+          this.value = this.value.slice(0, 1);
         } else if (this.multiple && this.value.length > this.limit) {
-          this.value = this.value.slice(0, this.limit)
+          this.value = this.value.slice(0, this.limit);
         }
       }
     },
@@ -84,12 +84,12 @@
       return {
         searchText: null,
         show: false,
-        showNotify: false
-      }
+        showNotify: false,
+      };
     },
     computed: {
       selectedItems() {
-        let foundItems = []
+        let foundItems = [];
         if (this.value.length) {
           for (var item of this.value) {
             if (this.options.length === 0) {
@@ -97,61 +97,61 @@
               foundItems = this.value;
             } else {
               if (typeof item === "string") {
-                let option
+                let option;
                 this.options.some(o => {
                   if (o.value === item) {
-                    option = o
-                    return true
+                    option = o;
+                    return true;
                   }
                 })
-                option && foundItems.push(option.label)
+                option && foundItems.push(option.label);
               }
             }
           }
-          return foundItems.join(', ')
+          return foundItems.join(', ');
         }
       },
       showPlaceholder() {
-        return this.value.length === 0
-      }
+        return this.value.length === 0;
+      },
     },
     watch: {
       value(val) {
         if (val.length > this.limit) {
-          this.showNotify = true
-          this.value.pop()
-          setTimeout(() => this.showNotify = false, 1000)
+          this.showNotify = true;
+          this.value.pop();
+          setTimeout(() => this.showNotify = false, 1000);
         }
-      }
+      },
     },
     methods: {
       select(v) {
         if (this.value.indexOf(v) === -1) {
           if (this.multiple) {
-            this.value.push(v)
+            this.value.push(v);
           } else {
-            this.value = [v]
+            this.value = [v];
           }
         } else {
           if (this.multiple) {
-            this.value.$remove(v)
+            this.value.$remove(v);
           }
         }
         if (this.closeOnSelect) {
-          this.toggleDropdown()
+          this.toggleDropdown();
         }
       },
       isSelected(v) {
         if (this.value.constructor !== Array) {
-          return this.value == v
+          return this.value == v;
         } else {
-          return this.value.indexOf(v) !== -1
+          return this.value.indexOf(v) !== -1;
         }
       },
       toggleDropdown() {
-        this.show = !this.show
-      }
-    }
+        this.show = !this.show;
+      },
+    },
   }
 </script>
 
