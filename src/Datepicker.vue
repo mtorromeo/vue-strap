@@ -27,7 +27,7 @@
             <span v-for="w in weekRange">{{w}}</span>
           </div>
           <div class="datepicker-dateRange">
-            <span v-for="d in dateRange" :class="d.sclass" @click="daySelect(d.date,this)">{{d.text}}</span>
+            <span v-for="d in dateRange" :class="d.sclass" @click="daySelect(d.date, event.target)">{{d.text}}</span>
           </div>
         </div>
       </div>
@@ -317,7 +317,7 @@
         this.date = new Date(year, this.month, this.day);
       },
       daySelect(date, el) {
-        if (el.$el.classList[0] === 'datepicker-item-disable') {
+        if (el.classList[0] === 'datepicker-item-disable') {
           return false;
         } else {
           this.date = date;
@@ -404,16 +404,14 @@
   }
 </script>
 
-<style scoped>
-  a.disabled {
-    cursor: not-allowed;
-  }
-</style>
-
 <style>
   .datepicker {
     position: relative;
     display: inline-block;
+  }
+
+  .datapicker a.disabled {
+    cursor: not-allowed;
   }
 
   .datepicker .input-group-addon.close {

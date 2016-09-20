@@ -1,7 +1,9 @@
 <template>
-  <div role="tabpanel" class="tab-pane" :class="{hide:!show, active:show}" v-show="show" :transition="$parent.effect">
-    <slot></slot>
-  </div>
+  <transition :name="$parent.effect">
+    <div role="tabpanel" class="tab-pane" :class="{hide:!show, active:show}" v-show="show" :transition="$parent.effect">
+      <slot></slot>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -33,6 +35,12 @@
 </script>
 
 <style scoped>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .2s ease;
+  }
+  .fade-enter, .fade-leave-active {
+    opacity: 0;
+  }
   .tab-content > .tab-pane {
     display: block;
   }

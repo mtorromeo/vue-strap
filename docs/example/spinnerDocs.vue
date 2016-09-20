@@ -1,6 +1,6 @@
 <template>
   <div class="bs-docs-section" id="spnner">
-    <h1 class="page-header"><a href="#spnner" class="anchor">Spnner</a></h1>
+    <h1 class="page-header"><a href="#spnner" class="anchor">Spinner</a></h1>
     <div class="bs-example">
 
       <!-- Html controls start-->
@@ -18,16 +18,16 @@
 
       <!-- Html markup start-->
       <div >
-        <button v-on:click="$broadcast('show::spinner')">show spinner</button>
-        <spinner id="spinner-box" :size="size" :fixed="fixed" text="I will close in 2 secs"></spinner>
+        <button @click="showSpinner()">show spinner</button>
+        <spinner ref="spinner" id="spinner-box" :size="size" :fixed="fixed" text="I will close in 2 secs"></spinner>
       </div>
       <!-- Html markup end-->
 
     </div>
 
     <pre><code class="language-markup"><script type="language-mark-up">
-		<spinner id="spinner-box" :size="(sm,md,lg...)" :fixed="(true,false)"
-			text="I will close in 2 secs" v-ref:spinner></spinner>
+		<spinner ref="spinner" :size="(sm,md,lg...)" :fixed="(true,false)"
+			text="I will close in 2 secs"></spinner>
 	</script></code></pre>
 
 	<p>To close the spinner, use the following code:</p>
@@ -64,15 +64,15 @@
   const sizes = [
     {
       text: 'sm',
-      value: 'sm'
+      value: 'sm',
     }, {
       text: 'md',
-      value: 'md'
+      value: 'md',
     }, {
       text: 'lg',
-      value: 'lg'
-    }
-  ]
+      value: 'lg',
+    },
+  ];
 
   export default {
     data() {
@@ -80,14 +80,15 @@
         fixed: false,
         size: 'lg',
         sizes: sizes.concat({text: 'xl', value: 'xl'}),
-      }
+      };
     },
-    events: {
-      'shown::spinner'(id) {
+    methods: {
+      showSpinner() {
+        this.$refs.spinner.show();
         setTimeout(() => {
-          this.$root.$broadcast('hide::spinner', id)
-	    }, 2000)
-      }
-    }
-  }
+          this.$refs.spinner.hide();
+  	    }, 2000);
+      },
+    },
+  };
 </script>

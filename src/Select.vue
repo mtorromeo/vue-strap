@@ -116,7 +116,7 @@
         return this.value.length === 0;
       },
       filteredOptions() {
-        return this.options.filter(o => o.indexOf(searchText) > -1);
+        return this.options.filter(o => o.value.indexOf(this.searchText) > -1);
       },
     },
     watch: {

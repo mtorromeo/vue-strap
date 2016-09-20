@@ -36,7 +36,7 @@
     },
     watch: {
       value() {
-        this.$emit('change', this.value);
+        this.$emit('input', this.value);
       },
     },
   };

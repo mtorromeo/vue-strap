@@ -32,12 +32,13 @@
       </alert>
 
       <alert
-        :show.sync="showRight"
+        :show="showRight"
         :duration="3000"
         type="success"
         width="400px"
         placement="top-right"
         dismissable
+        @close="showRight = false"
       >
         <span class="icon-ok-circled alert-icon-float-left"></span>
         <strong>Well Done!</strong>
@@ -45,12 +46,14 @@
       </alert>
 
       <alert
-        :show.sync="showTop"
+        :show="showTop"
         :duration="3000"
         type="danger"
         width="400px"
         placement="top"
-        dismissable>
+        dismissable
+        @close="showTop = false"
+      >
         <span class="icon-info-circled alert-icon-float-left"></span>
         <strong>Heads up!</strong>
         <p>This alert needs your attention.</p>
@@ -86,12 +89,13 @@
 </alert>
 
 <alert
-  :show.sync="showRight"
+  :show="showRight"
   :duration="3000"
   type="success"
   width="400px"
   placement="top-right"
   dismissable
+  @close="showRight = false"
 >
   <span class="icon-ok-circled alert-icon-float-left"></span>
   <strong>Well Done!</strong>
@@ -99,12 +103,14 @@
 </alert>
 
 <alert
-  :show.sync="showTop"
+  :show="showTop"
   :duration="3000"
   type="danger"
   width="400px"
   placement="top"
-  dismissable>
+  dismissable
+  @close="showTop = false"
+>
   <span class="icon-info-circled alert-icon-float-left"></span>
   <strong>Heads up!</strong>
   <p>This alert needs your attention.</p>
@@ -173,9 +179,9 @@
       return {
         showRight: false,
         showTop: false
-      }
+      };
     },
-  }
+  };
 </script>
 
 <style>

@@ -9,19 +9,20 @@
     props: {
       oneAtATime: {
         type: Boolean,
-        default: false
-      }
+        default: false,
+      },
     },
-    created() {
-      this.$on('isOpenEvent', (child) => {
-        if (this.oneAtATime) {
-          this.$children.forEach((item) => {
-            if (child !== item) {
-              item.isOpen = false
-            }
-          })
+    methods: {
+      setActivePanel(panel) {
+        if (!this.oneAtATime) {
+          return;
         }
-      })
-    }
+        for (const item of this.$children) {
+          if (panel !== item) {
+            item.isOpen = false;
+          }
+        }
+      },
+    },
   }
 </script>

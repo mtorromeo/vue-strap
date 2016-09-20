@@ -4,58 +4,48 @@
     <div class="bs-example">
       <button class="btn btn-success btn-lg" @click="showRight = true">Show Aside on right</button>
 
-      <sidebar :show.sync="showRight" placement="right" header="Title" :width="350">
+      <bs-aside :show="showRight" @close="showRight = false" placement="right" header="Title" :width="350">
         <h4>Text in aside</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.</p>
         <p> Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat.</p>
-          <pre><code class="language-javascript">
-if (talk === cheap){
-  code.style.display = 'block'
-}
-        </code></pre>
         <div class="aside-footer">
           <button type="button" class="btn btn-default" @click="showRight=false">Close</button>
         </div>
-      </sidebar>
+      </bs-aside>
 
       <button class="btn btn-danger btn-lg" @click="showLeft = true">Show Aside on left</button>
 
-      <sidebar  :show.sync="showLeft" placement="left" header="Title" :width="350">
+      <bs-aside :show="showLeft" @close="showLeft = false" placement="left" header="Title" :width="350">
         <h4>Text in aside</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.</p>
         <p> Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat.</p>
-        <pre><code class="language-javascript">
-if (talk === cheap){
-  code.style.display = 'block'
-}
-        </code></pre>
         <div class="aside-footer">
-          <button type="button" class="btn btn-default" @click="showLeft=false">Close</button>
+          <button type="button" class="btn btn-default" @click="showLeft = false">Close</button>
         </div>
-      </sidebar>
+      </bs-aside>
     </div>
     <pre><code class="language-markup"><script type="language-mark-up">
 <button
 class="btn btn-success btn-lg"
 @click="showRight = true">Show Aside on right</button>
 
-<aside :show.sync="showRight" placement="right" header="Title" :width="350">
+<bs-aside :show="showRight" @close="showRight = false" placement="right" header="Title" :width="350">
 ...
-</aside>
+</bs-aside>
 
 <button
 class="btn btn-danger btn-lg"
 @click="showLeft = true">Show Aside on left</button>
 
-<aside :show.sync="showLeft" placement="left" header="Title" :width="350">
+<bs-aside :show="showLeft" @close="showLeft = false" placement="left" header="Title" :width="350">
 ...
-</aside></script></code></pre>
+</bs-aside></script></code></pre>
 
     <h2>Options</h2>
     <table class="table table-bordered">
@@ -102,8 +92,8 @@ class="btn btn-danger btn-lg"
     data() {
       return {
         showLeft: false,
-        showRight: false
-      }
-    }
-  }
+        showRight: false,
+      };
+    },
+  };
 </script>

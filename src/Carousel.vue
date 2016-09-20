@@ -2,7 +2,7 @@
   <div class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators" v-show="indicators">
-      <indicator :indicator="indicator" :active-index="activeIndex" @change="activeIndex = $arguments[0]" :is-animating="isAnimating" @animating-change="isAnimating = $arguments[0]"></indicator>
+      <indicator :indicator="indicator" :active-index="activeIndex" @change="activeIndex = arguments[0]" :is-animating="isAnimating" @animating-change="isAnimating = arguments[0]"></indicator>
     </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
@@ -61,7 +61,7 @@
             this.$emit('change', this.activeIndex);
           },
         },
-      }
+      },
     },
     data() {
       return {

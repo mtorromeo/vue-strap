@@ -3,36 +3,36 @@
     <h1 class="page-header"><a href="#popover" class="anchor">Popover</a></h1>
     <div class="bs-example">
       <popover effect="fade" :header="true" title="Title" content="Lorem ipsum dolor sit amet" placement="top">
-        <button class="btn btn-default ">Popover on top</button>
+        <button class="btn btn-default">Popover on top</button>
       </popover>
       <popover effect="fade" :header="true" title="Title" content="Lorem ipsum dolor sit amet" placement="left">
-        <button class="btn btn-default ">Popover on left</button>
+        <button class="btn btn-default">Popover on left</button>
       </popover>
       <popover effect="fade" :header="true" title="Title" content="Lorem ipsum dolor sit amet" placement="right">
-        <button class="btn btn-default ">Popover on right</button>
+        <button class="btn btn-default">Popover on right</button>
       </popover>
       <popover effect="fade" placement="bottom" :header="true" title="Title" content="Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod">
-        <button class="btn btn-default ">Popover on bottom</button>
+        <button class="btn btn-default">Popover on bottom</button>
       </popover>
       <hr>
       <h4>No title</h4>
-      <popover effect="fade"  title="Title" content="Lorem ipsum dolor sit amet" placement="top">
-        <button class="btn btn-default ">Popover on top</button>
+      <popover effect="fade" title="Title" content="Lorem ipsum dolor sit amet" placement="top">
+        <button class="btn btn-default">Popover on top</button>
       </popover>
-      <popover effect="fade"  title="Title" content="Lorem ipsum dolor sit amet" placement="left">
-        <button class="btn btn-default ">Popover on left</button>
+      <popover effect="fade" title="Title" content="Lorem ipsum dolor sit amet" placement="left">
+        <button class="btn btn-default">Popover on left</button>
       </popover>
-      <popover effect="fade"  title="Title" content="Lorem ipsum dolor sit amet" placement="right">
-        <button class="btn btn-default ">Popover on right</button>
+      <popover effect="fade" title="Title" content="Lorem ipsum dolor sit amet" placement="right">
+        <button class="btn btn-default">Popover on right</button>
       </popover>
-      <popover effect="fade" placement="bottom"  title="Title" content="Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod">
-        <button class="btn btn-default ">Popover on bottom</button>
+      <popover effect="fade" placement="bottom" title="Title" content="Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod">
+        <button class="btn btn-default">Popover on bottom</button>
       </popover>
       <hr>
-      <h4>Triger</h4>
+      <h4>Trigger</h4>
       <p>
         <popover effect="scale"  title="Title" content="Lorem ipsum dolor sit amet" placement="top" trigger="hover">
-            <button class="btn btn-default ">Mouseenter</button>
+          <button class="btn btn-default ">Mouseenter</button>
         </popover>
       </p>
       <popover effect="scale"
@@ -46,7 +46,7 @@
   placement="bottom"
   title="Title"
   content="Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod">
-  <button class="btn btn-default ">Popover on bottom</button>
+  <button class="btn btn-default">Popover on bottom</button>
 </popover>
 </script></code></pre>
   <h2>Options</h2>
@@ -63,8 +63,8 @@
       <tr>
         <td>trigger</td>
         <td><code>String</code>, one of <code>click</code>
-        <code>focus</code>
-        <code>hover</code></td>
+          <code>focus</code>
+          <code>hover</code></td>
         <td><code>click</code></td>
         <td>How the popover is triggered.</td>
       </tr>
@@ -95,9 +95,9 @@
       <tr>
         <td>placement</td>
         <td><code>String</code>, one of <code>top</code>
-        <code>left</code>
-        <code>right</code>
-        <code>bottom</code></td>
+          <code>left</code>
+          <code>right</code>
+          <code>bottom</code></td>
         <td></td>
         <td>How to position the popover.</td>
       </tr>
@@ -112,7 +112,7 @@
       return {
         title: 'Title',
         text: 'Lorem ipsum dolor sit amet'
-      }
+      };
     },
-  }
+  };
 </script>

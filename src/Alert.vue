@@ -1,18 +1,20 @@
 <template>
-  <div v-show="show" :class="{
-    'alert':     true,
-    'alert-success': (type == 'success'),
-    'alert-warning': (type == 'warning'),
-    'alert-info':  (type == 'info'),
-    'alert-danger':  (type == 'danger'),
-    'top':       (placement === 'top'),
-    'top-right':   (placement === 'top-right')
-  }" transition="fade" :style="{width:width}" role="alert">
-    <button v-show="dismissable" type="button" class="close" @click="close">
-      <span>&times;</span>
-    </button>
-    <slot></slot>
-  </div>
+  <transition name="fade">
+    <div v-show="show" :class="{
+      'alert':         true,
+      'alert-success': type == 'success',
+      'alert-warning': type == 'warning',
+      'alert-info':    type == 'info',
+      'alert-danger':  type == 'danger',
+      'top':           placement === 'top',
+      'top-right':     placement === 'top-right',
+    }" :style="{width: width}" role="alert">
+      <button v-show="dismissable" type="button" class="close" @click="close">
+        <span>&times;</span>
+      </button>
+      <slot></slot>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -44,13 +46,14 @@
       show(value) {
         this.clearTimeout();
         if (value) {
-          this.$emit('opened');
+          this.$emit('open');
           if (this.duration) {
             this._timeout = setTimeout(this.close, this.duration);
           }
         } else {
-          this.$emit('closed');
+          this.$emit('close');
         }
+        this.$emit('visibility-change', value);
       },
     },
     methods: {
@@ -71,12 +74,9 @@
 
 <style>
   .fade-enter-active, .fade-leave-active {
-    transition: opacity .3s ease;
+    transition: opacity .2s ease;
   }
-
-  .fade-enter,
-  .fade-leave-active {
-    height: 0;
+  .fade-enter, .fade-leave-active {
     opacity: 0;
   }
 

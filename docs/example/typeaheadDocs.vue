@@ -159,19 +159,20 @@ new Vue {
     data() {
       return {
         USstate: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-        'asyncTemplate': '{{ item.formatted_address }}',
+        'asyncTemplate': 'x',
         'githubTemplate': '<img width="18px" height="18px" :src="item.avatar_url"/> <span>{{item.login}}</span>'
       }
     },
     methods: {
       googleCallback(items, targetVM) {
+        console.log(items, targetVM);
         const that = targetVM;
-        that.reset()
-        that.query = items.formatted_address
+        that.reset();
+        // that.query = items.formatted_address;
       },
       githubCallback(items) {
-        window.open(items.html_url, '_blank')
-      }
-    }
-  }
+        window.open(items.html_url, '_blank');
+      },
+    },
+  };
 </script>

@@ -1,9 +1,9 @@
 <template>
   <label class="btn" :class="{
-    'active':    checked,
+    'active':      checked,
     'btn-success': type == 'success',
     'btn-warning': type == 'warning',
-    'btn-info':  type == 'info',
+    'btn-info':    type == 'info',
     'btn-danger':  type == 'danger',
     'btn-default': type == 'default',
     'btn-primary': type == 'primary',
@@ -41,7 +41,7 @@
       },
       watch: {
         checked() {
-          this.$emit('change', this.checked);
+          this.$emit('input', this.checked);
         },
       },
     },

@@ -5,33 +5,33 @@
         <tabs>
             <tab header="Example">
                 <p>
-                    <pre>Selected date is: {{$refs.dp.date}}</pre>
+                    <pre>Selected date is: {{dateValue}}</pre>
                 </p>
 
-                <datepicker v-ref:dp :value.sync="value" :disabled-days-of-week="disabled" :format="format.toString()" :show-reset-button="reset" :show-picker-button="picker" @change="dateChanged"></datepicker>
+                <datepicker ref="dp" v-model="value" :disabled-days-of-week="disabled" :format="format.toString()" :show-reset-button="reset" :show-picker-button="picker" @change="dateChanged"></datepicker>
 
                 <h4>Disabled days of week</h4>
 
-                <v-select multiple :value.sync="disabled">
-                    <v-option value="0">0</v-option>
-                    <v-option value="1">1</v-option>
-                    <v-option value="2">2</v-option>
-                    <v-option value="3">3</v-option>
-                    <v-option value="4">4</v-option>
-                    <v-option value="5">5</v-option>
-                    <v-option value="6">6</v-option>
-                </v-select>
+                <bs-select multiple v-model="disabled">
+                    <bs-option value="0">0</bs-option>
+                    <bs-option value="1">1</bs-option>
+                    <bs-option value="2">2</bs-option>
+                    <bs-option value="3">3</bs-option>
+                    <bs-option value="4">4</bs-option>
+                    <bs-option value="5">5</bs-option>
+                    <bs-option value="6">6</bs-option>
+                </bs-select>
 
                 <h4>Format</h4>
-                <v-select :value.sync="format">
-                    <v-option value="yyyy,MM,dd">yyyy,MM,dd</v-option>
-                    <v-option value="yyyy-MM-dd">yyyy-MM-dd</v-option>
-                    <v-option value="yyyy.MM.dd">yyyy.MM.dd</v-option>
-                    <v-option value="MMM/dd/yyyy">MMM/dd/yyyy</v-option>
-                    <v-option value="MMMM/dd/yyyy">MMMM/dd/yyyy</v-option>
-                    <v-option value="dd/MM/yyyy">dd/MM/yyyy</v-option>
-                    <v-option value="dd-MM-yyyy">dd-MM-yyyy</v-option>
-                </v-select>
+                <bs-select v-model="format">
+                    <bs-option value="yyyy,MM,dd">yyyy,MM,dd</bs-option>
+                    <bs-option value="yyyy-MM-dd">yyyy-MM-dd</bs-option>
+                    <bs-option value="yyyy.MM.dd">yyyy.MM.dd</bs-option>
+                    <bs-option value="MMM/dd/yyyy">MMM/dd/yyyy</bs-option>
+                    <bs-option value="MMMM/dd/yyyy">MMMM/dd/yyyy</bs-option>
+                    <bs-option value="dd/MM/yyyy">dd/MM/yyyy</bs-option>
+                    <bs-option value="dd-MM-yyyy">dd-MM-yyyy</bs-option>
+                </bs-select>
 
                 <h4>Reset button</h4>
                 <label>
@@ -46,30 +46,30 @@
 
             <tab header="Markup">
                 <pre><code class="language-markup"><script type="language-mark-up"><datepicker
-  :value.sync="value"
+  v-model="value"
   :disabled-days-of-week="disabled"
   :format="format"
   :show-reset-button="reset">
 </datepicker>
 
-<select multiple :value.sync="disabled" size=5>
-  <v-option value="0">0</v-option>
-  <v-option value="1">1</v-option>
-  <v-option value="2">2</v-option>
-  <v-option value="3">3</v-option>
-  <v-option value="4">4</v-option>
-  <v-option value="5">5</v-option>
-  <v-option value="6">6</v-option>
-</select>
-<select  :value.sync="format">
-  <v-option value="yyyy,MM,dd">yyyy,MM,dd</v-option>
-  <v-option value="yyyy-MM-dd">yyyy-MM-dd</v-option>
-  <v-option value="yyyy.MM.dd">yyyy.MM.dd</v-option>
-  <v-option value="MMM/dd/yyyy">MMM/dd/yyyy</v-option>
-  <v-option value="MMMM/dd/yyyy">MMMM/dd/yyyy</v-option>
-  <v-option value="dd/MM/yyyy">dd/MM/yyyy</v-option>
-  <v-option value="dd-MM-yyyy">dd-MM-yyyy</v-option>
-</select>
+<bs-select multiple v-model="disabled" size=5>
+  <bs-option value="0">0</bs-option>
+  <bs-option value="1">1</bs-option>
+  <bs-option value="2">2</bs-option>
+  <bs-option value="3">3</bs-option>
+  <bs-option value="4">4</bs-option>
+  <bs-option value="5">5</bs-option>
+  <bs-option value="6">6</bs-option>
+</bs-select>
+<bs-select v-model="format">
+  <bs-option value="yyyy,MM,dd">yyyy,MM,dd</bs-option>
+  <bs-option value="yyyy-MM-dd">yyyy-MM-dd</bs-option>
+  <bs-option value="yyyy.MM.dd">yyyy.MM.dd</bs-option>
+  <bs-option value="MMM/dd/yyyy">MMM/dd/yyyy</bs-option>
+  <bs-option value="MMMM/dd/yyyy">MMMM/dd/yyyy</bs-option>
+  <bs-option value="dd/MM/yyyy">dd/MM/yyyy</bs-option>
+  <bs-option value="dd-MM-yyyy">dd-MM-yyyy</bs-option>
+</bs-select>
 </script></code></pre>
             </tab>
 
@@ -168,15 +168,17 @@
             return {
                 disabled: [],
                 value: '01/01/2016',
+                dateValue: '',
                 format: ['dd/MM/yyyy'],
                 reset: true,
-                picker: true
-            }
+                picker: true,
+            };
         },
         methods: {
             dateChanged(value) {
                 console.log(value);
+                console.log(this.$refs);
             },
         },
-    }
+    };
 </script>

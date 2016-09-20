@@ -1,16 +1,11 @@
 <template>
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" @click="isOpen = !isOpen">
       <h4 class="panel-title">
-    <a class="accordion-toggle"
-      @click="isOpen = !isOpen">
-      <slot name="header">
-      {{ header }}
-      </slot>
-    </a>
-    </h4>
+        <slot name="header">{{ header }}</slot>
+      </h4>
     </div>
-    <transition name="collapse">
+    <transition name="collapse" @after-enter="afterEnter" @before-leave="beforeLeave">
       <div class="panel-collapse" v-show="isOpen">
         <div class="panel-body">
           <slot></slot>
@@ -31,26 +26,27 @@
     },
     watch: {
       isOpen() {
+        if (this.isOpen) {
+          this.$parent.setActivePanel(this);
+        }
         this.$emit('visibility-change', this.isOpen);
-      }
+      },
     },
-    transitions: {
-      collapse: {
-        afterEnter(el) {
-          el.style.maxHeight = "";
-        },
-        beforeLeave(el) {
-          el.style.maxHeight = `${el.offsetHeight}px`;
-          // Recalculate DOM before the class gets added.
-          return el.offsetHeight;
-        },
-      }
+    methods: {
+      afterEnter(el) {
+        el.style.maxHeight = "";
+      },
+      beforeLeave(el) {
+        el.style.maxHeight = `${el.offsetHeight}px`;
+        // Recalculate DOM before the class gets added.
+        return el.offsetHeight;
+      },
     },
   }
 </script>
 
 <style>
-  .accordion-toggle {
+  .panel-heading {
     cursor: pointer;
   }
 

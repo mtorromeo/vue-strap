@@ -17,7 +17,7 @@
       'modal-lg':   large,
       'modal-sm':   small,
     }" role="document" :style="{width: optionalWidth}">
-      <div ref="modal-content" class="modal-content">
+      <div ref="modalContent" class="modal-content">
         <slot name="modal-header">
           <div class="modal-header"
              @mousedown="startDrag" @touchstart="startDrag">
@@ -26,7 +26,7 @@
             </button>
             <h4 class="modal-title">
               <slot name="title">
-                <template v-html="title"></template>
+                <span v-html="title"></span>
               </slot>
             </h4>
           </div>
@@ -202,7 +202,7 @@
         handler(val) {
           const body = document.body;
           if (val) {
-            this.$refs.modalContent.$el.focus();
+            this.$refs.modalContent.focus();
             this.display = true;
             body.classList.add('modal-open');
             const scrollBarWidth = getScrollBarWidth();

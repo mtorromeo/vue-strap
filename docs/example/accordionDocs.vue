@@ -6,7 +6,7 @@
         <input type="checkbox" v-model="checked">
         Open only one at a time.
       </p>
-      <accordion :one-at-atime="checked">
+      <accordion :one-at-a-time="checked">
         <panel header="Panel #1" :is-open="true">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -45,7 +45,7 @@
 <input type="checkbox" v-model="checked">
 <label for="checked">Open only one at a time.</label>
 
-<accordion :one-at-atime="checked">
+<accordion :one-at-a-time="checked">
   <panel header="Panel #1" :is-open="true">
     ...
   </panel>
@@ -72,7 +72,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>one-at-time</td>
+          <td>one-at-a-time</td>
           <td><code>Boolean</code></td>
           <td><code>false</code></td>
           <td>Control whether expanding an item will cause the other items to close.</td>
@@ -111,8 +111,8 @@
   export default {
     data() {
       return {
-        checked: true
-      }
+        checked: true,
+      };
     },
-  }
+  };
 </script>

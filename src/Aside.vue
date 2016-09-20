@@ -1,24 +1,26 @@
 <template>
-  <div class="aside" :style="{width: width + 'px'}" :class="{
-    left:  placement === 'left',
-    right: placement === 'right'
-  }" v-show="show" :transition="(this.placement === 'left') ? 'slideleft' : 'slideright'">
-    <div class="aside-dialog">
-      <div class="aside-content">
-        <div class="aside-header">
-          <button type="button" class="close" @click='close'><span>&times;</span></button>
-          <h4 class="aside-title">
-      <slot name="header">
-      {{ header }}
-      </slot>
-      </h4>
-        </div>
-        <div class="aside-body">
-          <slot></slot>
+  <transition :name="this.placement === 'left' ? 'slideleft' : 'slideright'">
+    <div class="aside" :style="{width: width + 'px'}" :class="{
+      left:  placement === 'left',
+      right: placement === 'right',
+    }" v-show="show">
+      <div class="aside-dialog">
+        <div class="aside-content">
+          <div class="aside-header">
+            <button type="button" class="close" @click='close'><span>&times;</span></button>
+            <h4 class="aside-title">
+              <slot name="header">
+              {{ header }}
+              </slot>
+            </h4>
+          </div>
+          <div class="aside-body">
+            <slot></slot>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -28,7 +30,7 @@
     props: {
       show: {
         type: Boolean,
-        require: true,
+        default: true,
       },
       placement: {
         type: String,
@@ -76,8 +78,8 @@
       close() {
         this.show = false;
       },
-    }
-  }
+    },
+  };
 </script>
 
 <style>
