@@ -9,18 +9,18 @@
       </tab>
 
       <tab header="Markup" icon="pencil">
-        <pre><code class="language-markup"><script type="language-mark-up"><tabs>
-  <tab header="one" icon="pencil">
+        <pre><code class="language-markup">&lt;tabs&gt;
+  &lt;tab header="one" icon="pencil"&gt;
     ...
-  </tab>
-  <tab header="two">
+  &lt;/tab&gt;
+  &lt;tab header="two"&gt;
     ...
-  </tab>
-  <tab header="three" disabled>
+  &lt;/tab&gt;
+  &lt;tab header="three" disabled&gt;
     ...
-  </tab>
-</tabs>
-</script></code></pre>
+  &lt;/tab&gt;
+&lt;/tabs&gt;
+</code></pre>
       </tab>
 
       <tab header="Tabs options (container)" icon="th-list">

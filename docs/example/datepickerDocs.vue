@@ -45,32 +45,13 @@
             </tab>
 
             <tab header="Markup">
-                <pre><code class="language-markup"><script type="language-mark-up"><datepicker
+                <pre><code class="language-markup">&lt;datepicker
   v-model="value"
   :disabled-days-of-week="disabled"
   :format="format"
-  :show-reset-button="reset">
-</datepicker>
-
-<bs-select multiple v-model="disabled" size=5>
-  <bs-option value="0">0</bs-option>
-  <bs-option value="1">1</bs-option>
-  <bs-option value="2">2</bs-option>
-  <bs-option value="3">3</bs-option>
-  <bs-option value="4">4</bs-option>
-  <bs-option value="5">5</bs-option>
-  <bs-option value="6">6</bs-option>
-</bs-select>
-<bs-select v-model="format">
-  <bs-option value="yyyy,MM,dd">yyyy,MM,dd</bs-option>
-  <bs-option value="yyyy-MM-dd">yyyy-MM-dd</bs-option>
-  <bs-option value="yyyy.MM.dd">yyyy.MM.dd</bs-option>
-  <bs-option value="MMM/dd/yyyy">MMM/dd/yyyy</bs-option>
-  <bs-option value="MMMM/dd/yyyy">MMMM/dd/yyyy</bs-option>
-  <bs-option value="dd/MM/yyyy">dd/MM/yyyy</bs-option>
-  <bs-option value="dd-MM-yyyy">dd-MM-yyyy</bs-option>
-</bs-select>
-</script></code></pre>
+  :show-reset-button="reset"&gt;
+&lt;/datepicker&gt;
+</code></pre>
             </tab>
 
             <tab header="Options">

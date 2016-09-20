@@ -6,9 +6,7 @@
     </p>
     <div class="bs-example">
       <p>
-        <pre>
-Select data : {{single}}
-        </pre>
+        <pre>Select data : {{single}}</pre>
       </p>
       <bs-select v-model="single">
         <bs-option value="Apple">Apple</bs-option>
@@ -20,9 +18,7 @@ Select data : {{single}}
       <hr>
       <h4>Multiple select</h4>
       <p>
-        <pre>
-Select data : {{multiple.join(', ')}}
-        </pre>
+        <pre>Select data : {{multiple.join(', ')}}</pre>
       </p>
       <bs-select multiple v-model="multiple">
         <bs-option value="Apple">Apple</bs-option>
@@ -34,9 +30,7 @@ Select data : {{multiple.join(', ')}}
       <hr>
       <h4>Multiple select limit</h4>
       <p>
-        <pre>
-Select data : {{multipleLimit.join(', ')}}
-        </pre>
+        <pre>Select data : {{multipleLimit.join(', ')}}</pre>
       </p>
       <bs-select multiple :limit="2" v-model="multipleLimit">
         <bs-option value="Apple">Apple</bs-option>
@@ -48,9 +42,7 @@ Select data : {{multipleLimit.join(', ')}}
       <hr>
       <h4>Custom template</h4>
       <p>
-        <pre>
-Select data : {{custom.join(', ')}}
-        </pre>
+        <pre>Select data : {{custom.join(', ')}}</pre>
       </p>
       <bs-select multiple v-model="custom">
         <bs-option value="Star"><span slot="span" class="glyphicon glyphicon-star"></span> Star</bs-option>
@@ -62,9 +54,7 @@ Select data : {{custom.join(', ')}}
       <h4>Array/Collection driven w/ search</h4>
       <p>
         Optionally specify an options (array/collection) which will drive the contents of the property. You can enable search mode in this case.
-        <pre>
-Select data : {{arr}}
-        </pre>
+        <pre>Select data : {{arr}}</pre>
       </p>
       <bs-select v-model="arr" :options="fruitOptions" :search="true" :close-on-select="true">
       </bs-select>
@@ -80,40 +70,39 @@ Select data : {{arr}}
       </bs-select>
 
     </div>
-    <pre><code class="language-markup"><script type="language-mark-up">
-<bs-select>
-  <bs-option value="Apple">Apple</bs-option>
-  <bs-option value="Banana">Banana</bs-option>
-  <bs-option value="Cherry">Cherry</bs-option>
-  <bs-option value="Orange">Orange</bs-option>
-  <bs-option value="Grape">Grape</bs-option>
-</bs-select>
-<hr>
-<bs-select multiple>
-  <bs-option value="Apple">Apple</bs-option>
-  <bs-option value="Banana">Banana</bs-option>
-  <bs-option value="Cherry">Cherry</bs-option>
-  <bs-option value="Orange">Orange</bs-option>
-  <bs-option value="Grape">Grape</bs-option>
-</bs-select>
-<hr>
- <bs-select multiple :limit="2">
-  <bs-option value="Apple">Apple</bs-option>
-  <bs-option value="Banana">Banana</bs-option>
-  <bs-option value="Cherry">Cherry</bs-option>
-  <bs-option value="Orange">Orange</bs-option>
-  <bs-option value="Grape">Grape</bs-option>
-</bs-select>
-<hr>
-<bs-select multiple>
-  <bs-option value="Star"><span slot="span" class="glyphicon glyphicon-star"></span> Star</bs-option>
-  <bs-option value="Heart"><span slot="span" class="glyphicon glyphicon-heart"></span> Heart</bs-option>
-  <bs-option value="Film"><span slot="span" class="glyphicon glyphicon-film"></span> Film</bs-option>
-  <bs-option value="Inbox"><span slot="span" class="glyphicon glyphicon-inbox"></span> Inbox</bs-option>
-</bs-select>
+    <pre><code class="language-markup">&lt;bs-select&gt;
+  &lt;bs-option value="Apple"&gt;Apple&lt;/bs-option&gt;
+  &lt;bs-option value="Banana"&gt;Banana&lt;/bs-option&gt;
+  &lt;bs-option value="Cherry"&gt;Cherry&lt;/bs-option&gt;
+  &lt;bs-option value="Orange"&gt;Orange&lt;/bs-option&gt;
+  &lt;bs-option value="Grape"&gt;Grape&lt;/bs-option&gt;
+&lt;/bs-select&gt;
+&lt;hr&gt;
+&lt;bs-select multiple&gt;
+  &lt;bs-option value="Apple"&gt;Apple&lt;/bs-option&gt;
+  &lt;bs-option value="Banana"&gt;Banana&lt;/bs-option&gt;
+  &lt;bs-option value="Cherry"&gt;Cherry&lt;/bs-option&gt;
+  &lt;bs-option value="Orange"&gt;Orange&lt;/bs-option&gt;
+  &lt;bs-option value="Grape"&gt;Grape&lt;/bs-option&gt;
+&lt;/bs-select&gt;
+&lt;hr&gt;
+ &lt;bs-select multiple :limit="2"&gt;
+  &lt;bs-option value="Apple"&gt;Apple&lt;/bs-option&gt;
+  &lt;bs-option value="Banana"&gt;Banana&lt;/bs-option&gt;
+  &lt;bs-option value="Cherry"&gt;Cherry&lt;/bs-option&gt;
+  &lt;bs-option value="Orange"&gt;Orange&lt;/bs-option&gt;
+  &lt;bs-option value="Grape"&gt;Grape&lt;/bs-option&gt;
+&lt;/bs-select&gt;
+&lt;hr&gt;
+&lt;bs-select multiple&gt;
+  &lt;bs-option value="Star"&gt;&lt;span slot="span" class="glyphicon glyphicon-star"&gt;&lt;/span&gt; Star&lt;/bs-option&gt;
+  &lt;bs-option value="Heart"&gt;&lt;span slot="span" class="glyphicon glyphicon-heart"&gt;&lt;/span&gt; Heart&lt;/bs-option&gt;
+  &lt;bs-option value="Film"&gt;&lt;span slot="span" class="glyphicon glyphicon-film"&gt;&lt;/span&gt; Film&lt;/bs-option&gt;
+  &lt;bs-option value="Inbox"&gt;&lt;span slot="span" class="glyphicon glyphicon-inbox"&gt;&lt;/span&gt; Inbox&lt;/bs-option&gt;
+&lt;/bs-select&gt;
 
-<bs-select v-model="arr" :options="fruitOptions" :search="true">
-</bs-select>
+&lt;bs-select v-model="arr" :options="fruitOptions" :search="true"&gt;
+&lt;/bs-select&gt;
 fruitOptions = [
   {value:'apple', label:'Apple'},
   {value:'banana', label:'Banana'},
@@ -122,9 +111,9 @@ fruitOptions = [
   {value:'grape', label:'Grape'},
 ]
 
-<bs-select v-model="arr2" :options="fruitOptions" :close-on-select="true">
-</bs-select>
-    </script></code></pre>
+&lt;bs-select v-model="arr2" :options="fruitOptions" :close-on-select="true"&gt;
+&lt;/bs-select&gt;
+</code></pre>
     <h2>Select Options</h2>
     <table class="table table-bordered">
       <thead>

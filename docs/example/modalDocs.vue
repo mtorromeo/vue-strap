@@ -89,65 +89,64 @@
         </div>
       </modal>
     </div>
-    <pre><code class="language-markup"><script type="language-mark-up">
-<button class="btn btn-default"
+    <pre><code class="language-markup">&lt;button class="btn btn-default"
   @click="showModal = true"
-  >Show modal
-</button>
-<modal :show="showModal" @click="showModal = false">
-  <div slot="modal-header" class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
-  </div>
-  <div slot="modal-body" class="modal-body">...</div>
-</modal>
+  &gt;Show modal
+&lt;/button&gt;
+&lt;modal :show="showModal" @click="showModal = false"&gt;
+  &lt;div slot="modal-header" class="modal-header"&gt;
+    &lt;h4 class="modal-title"&gt;Modal title&lt;/h4&gt;
+  &lt;/div&gt;
+  &lt;div slot="modal-body" class="modal-body"&gt;...&lt;/div&gt;
+&lt;/modal&gt;
 
-<button class="btn btn-primary"
-  @click="fadeModal = true">
+&lt;button class="btn btn-primary"
+  @click="fadeModal = true"&gt;
   Fade modal
-</button>
-<modal title="Fade Modal" :show="fadeModal" @close="fadeModal = false" effect="fade" width="800">
-  <div slot="modal-body" class="modal-body">...</div>
-</modal>
+&lt;/button&gt;
+&lt;modal title="Fade Modal" :show="fadeModal" @close="fadeModal = false" effect="fade" width="800"&gt;
+  &lt;div slot="modal-body" class="modal-body"&gt;...&lt;/div&gt;
+&lt;/modal&gt;
 
-<button class="btn btn-success"
-  @click="zoomModal = true">
+&lt;button class="btn btn-success"
+  @click="zoomModal = true"&gt;
   Zoom modal
-</button>
-<modal title="Zoom Modal" :show="zoomModal" @close="zoomModal = false" effect="zoom" width="400">
-  <div slot="modal-body" class="modal-body">...</div>
-</modal>
+&lt;/button&gt;
+&lt;modal title="Zoom Modal" :show="zoomModal" @close="zoomModal = false" effect="zoom" width="400"&gt;
+  &lt;div slot="modal-body" class="modal-body"&gt;...&lt;/div&gt;
+&lt;/modal&gt;
 
-<button class="btn btn-default"
-  @click="showCustomModal = true">
+&lt;button class="btn btn-default"
+  @click="showCustomModal = true"&gt;
   Show custom modal
-</button>
-<modal :show="showCustomModal" @close="showCustomModal = false" effect="fade" width="400">
-  <div slot="modal-header" class="modal-header">
-    <h4 class="modal-title">
-      <i>Custom</i> <code>Modal</code> <b>Title</b>
-    </h4>
-  </div>
-  <div slot="modal-body" class="modal-body">...</div>
-  <div slot="modal-footer" class="modal-footer">
-    <button type="button" class="btn btn-default" @click='showCustomModal = false'>Exit</button>
-    <button type="button" class="btn btn-success" @click='showCustomModal = false'>Custom Save</button>
-  </div>
-</modal>
-<button class="btn btn-default"
+&lt;/button&gt;
+&lt;modal :show="showCustomModal" @close="showCustomModal = false" effect="fade" width="400"&gt;
+  &lt;div slot="modal-header" class="modal-header"&gt;
+    &lt;h4 class="modal-title"&gt;
+      &lt;i&gt;Custom&lt;/i&gt; &lt;code&gt;Modal&lt;/code&gt; &lt;b&gt;Title&lt;/b&gt;
+    &lt;/h4&gt;
+  &lt;/div&gt;
+  &lt;div slot="modal-body" class="modal-body"&gt;...&lt;/div&gt;
+  &lt;div slot="modal-footer" class="modal-footer"&gt;
+    &lt;button type="button" class="btn btn-default" @click='showCustomModal = false'&gt;Exit&lt;/button&gt;
+    &lt;button type="button" class="btn btn-success" @click='showCustomModal = false'&gt;Custom Save&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/modal&gt;
+&lt;button class="btn btn-default"
   @click="largeModal = true"
-  >Large Modal
-</button>
-<modal :show="largeModal" @close="largeModal = false">
-  <div slot="modal-body" class="modal-body">...</div>
-</modal>
-<button class="btn btn-default"
+  &gt;Large Modal
+&lt;/button&gt;
+&lt;modal :show="largeModal" @close="largeModal = false"&gt;
+  &lt;div slot="modal-body" class="modal-body"&gt;...&lt;/div&gt;
+&lt;/modal&gt;
+&lt;button class="btn btn-default"
   @click="smallModal = true"
-  >Small Modal
-</button>
-<modal :show="smallModal" @close="smallModal = false">
-  <div slot="modal-body" class="modal-body">...</div>
-</modal>
-  </script></code></pre>
+  &gt;Small Modal
+&lt;/button&gt;
+&lt;modal :show="smallModal" @close="smallModal = false"&gt;
+  &lt;div slot="modal-body" class="modal-body"&gt;...&lt;/div&gt;
+&lt;/modal&gt;
+</code></pre>
   <h2>Options</h2>
   <table class="table table-bordered">
     <thead>

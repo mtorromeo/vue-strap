@@ -27,14 +27,13 @@
         <input type="text" class="form-control" placeholder="Focus">
       </tooltip>
     </div>
-    <pre><code class="language-markup"><script type="language-mark-up">
-<tooltip
+    <pre><code class="language-markup">&lt;tooltip
   effect="scale"
   placement="bottom"
-  content="Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod">
-  <button class="btn btn-default ">tooltip on bottom</button>
-</tooltip>
-</script></code></pre>
+  content="Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod"&gt;
+  &lt;button class="btn btn-default "&gt;tooltip on bottom&lt;/button&gt;
+&lt;/tooltip&gt;
+</code></pre>
   <h2>Options</h2>
   <table class="table table-bordered">
     <thead>

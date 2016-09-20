@@ -60,35 +60,34 @@
       </alert>
     </div>
 
-    <pre><code class="language-markup"><script type="language-mark-up">
-<button class="btn btn-default btn-lg"
-  @click="showRight = !showRight">
+    <pre><code class="language-markup">&lt;button class="btn btn-default btn-lg"
+  @click="showRight = !showRight"&gt;
   Click to toggle alert on right
-</button>
+&lt;/button&gt;
 
-<button class="btn btn-default btn-lg"
-  @click="showTop = !showTop">
+&lt;button class="btn btn-default btn-lg"
+  @click="showTop = !showTop"&gt;
   Click to toggle alert on top
-</button>
-<hr>
-<alert type="success" >
-  <strong>Well Done!</strong>
+&lt;/button&gt;
+&lt;hr&gt;
+&lt;alert type="success" &gt;
+  &lt;strong&gt;Well Done!&lt;/strong&gt;
   You successfully read this important alert message.
-</alert>
+&lt;/alert&gt;
 
-<alert type="info" >
-  <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
-</alert>
+&lt;alert type="info" &gt;
+  &lt;strong&gt;Heads up!&lt;/strong&gt; This alert needs your attention, but it's not super important.
+&lt;/alert&gt;
 
-<alert type="danger" dismissable>
-  <strong>Oh snap!</strong> Change a few things up and try submitting again.
-</alert>
+&lt;alert type="danger" dismissable&gt;
+  &lt;strong&gt;Oh snap!&lt;/strong&gt; Change a few things up and try submitting again.
+&lt;/alert&gt;
 
-<alert type="warning" dismissable>
-  <strong>Warning!</strong> Better check yourself, you're not looking too good.
-</alert>
+&lt;alert type="warning" dismissable&gt;
+  &lt;strong&gt;Warning!&lt;/strong&gt; Better check yourself, you're not looking too good.
+&lt;/alert&gt;
 
-<alert
+&lt;alert
   :show="showRight"
   :duration="3000"
   type="success"
@@ -96,13 +95,13 @@
   placement="top-right"
   dismissable
   @close="showRight = false"
->
-  <span class="icon-ok-circled alert-icon-float-left"></span>
-  <strong>Well Done!</strong>
-  <p>You successfully read this important alert message.</p>
-</alert>
+&gt;
+  &lt;span class="icon-ok-circled alert-icon-float-left"&gt;&lt;/span&gt;
+  &lt;strong&gt;Well Done!&lt;/strong&gt;
+  &lt;p&gt;You successfully read this important alert message.&lt;/p&gt;
+&lt;/alert&gt;
 
-<alert
+&lt;alert
   :show="showTop"
   :duration="3000"
   type="danger"
@@ -110,13 +109,12 @@
   placement="top"
   dismissable
   @close="showTop = false"
->
-  <span class="icon-info-circled alert-icon-float-left"></span>
-  <strong>Heads up!</strong>
-  <p>This alert needs your attention.</p>
-</alert>
-
-</script></code></pre>
+&gt;
+  &lt;span class="icon-info-circled alert-icon-float-left"&gt;&lt;/span&gt;
+  &lt;strong&gt;Heads up!&lt;/strong&gt;
+  &lt;p&gt;This alert needs your attention.&lt;/p&gt;
+&lt;/alert&gt;
+</code></pre>
 
     <h2>Options</h2>
     <table class="table table-bordered">

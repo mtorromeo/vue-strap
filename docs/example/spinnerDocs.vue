@@ -25,13 +25,12 @@
 
     </div>
 
-    <pre><code class="language-markup"><script type="language-mark-up">
-		<spinner ref="spinner" :size="(sm,md,lg...)" :fixed="(true,false)"
-			text="I will close in 2 secs"></spinner>
-	</script></code></pre>
+    <pre><code class="language-markup">&lt;spinner ref="spinner" :size="(sm,md,lg...)" :fixed="(true,false)"
+  text="I will close in 2 secs"&gt;&lt;/spinner&gt;
+</code></pre>
 
-	<p>To close the spinner, use the following code:</p>
-	<pre><code class="language-markup"><script type="language-mark-up">this.$refs.spinner.hide()</script></code></pre>
+  <p>To close the spinner, use the following code:</p>
+  <pre><code class="language-javascript">this.$refs.spinner.hide()</code></pre>
   <h2>Spinner Options</h2>
   <table class="table table-bordered">
     <thead>
@@ -87,7 +86,7 @@
         this.$refs.spinner.show();
         setTimeout(() => {
           this.$refs.spinner.hide();
-  	    }, 2000);
+        }, 2000);
       },
     },
   };

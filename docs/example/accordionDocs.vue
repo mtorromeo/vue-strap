@@ -41,25 +41,24 @@
         </panel>
       </accordion>
     </div>
-    <pre><code class="language-markup"><script type="language-mark-up">
-<input type="checkbox" v-model="checked">
-<label for="checked">Open only one at a time.</label>
+    <pre><code class="language-markup">&lt;input type="checkbox" v-model="checked"&gt;
+&lt;label for="checked"&gt;Open only one at a time.&lt;/label&gt;
 
-<accordion :one-at-a-time="checked">
-  <panel header="Panel #1" :is-open="true">
+&lt;accordion :one-at-a-time="checked"&gt;
+  &lt;panel header="Panel #1" :is-open="true"&gt;
     ...
-  </panel>
-  <panel header="Panel #2">
+  &lt;/panel&gt;
+  &lt;panel header="Panel #2"&gt;
     ...
-  </panel>
-  <panel header="Panel #3">
+  &lt;/panel&gt;
+  &lt;panel header="Panel #3"&gt;
     ...
-  </panel>
-  <panel header="Panel #4">
+  &lt;/panel&gt;
+  &lt;panel header="Panel #4"&gt;
     ...
-  </panel>
-</accordion>
-</script></code></pre>
+  &lt;/panel&gt;
+&lt;/accordion&gt;
+</code></pre>
     <h2>Accordion Options</h2>
     <table class="table table-bordered">
       <thead>

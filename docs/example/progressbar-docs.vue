@@ -61,22 +61,21 @@
       </div>
 
     </div>
-    <pre><code class="language-markup"><script type="language-mark-up">
-<!-- Stacked -->
-<div class="progress">
-  <progressbar :now="" label type="warning" striped></progressbar>
+    <pre><code class="language-markup">&lt;!-- Stacked --&gt;
+&lt;div class="progress"&gt;
+  &lt;progressbar :now="" label type="warning" striped&gt;&lt;/progressbar&gt;
 
-  <progressbar :now="" label type="success" ></progressbar>
+  &lt;progressbar :now="" label type="success" &gt;&lt;/progressbar&gt;
 
-  <progressbar :now="" label type="danger"></progressbar>
+  &lt;progressbar :now="" label type="danger"&gt;&lt;/progressbar&gt;
 
-  <progressbar :now="" label type="primary" striped animated></progressbar>
-</div>
-<!-- Single -->
-<div class="progress">
-  <progressbar :now="" label type="warning" striped></progressbar>
-</div>
-</script></code></pre>
+  &lt;progressbar :now="" label type="primary" striped animated&gt;&lt;/progressbar&gt;
+&lt;/div&gt;
+&lt;!-- Single --&gt;
+&lt;div class="progress"&gt;
+  &lt;progressbar :now="" label type="warning" striped&gt;&lt;/progressbar&gt;
+&lt;/div&gt;
+</code></pre>
 
     <h2>Options</h2>
     <table class="table table-bordered">

@@ -26,22 +26,21 @@
         </slider>
       </carousel>
     </div>
-    <pre><code class="language-markup"><script type="language-mark-up">
-<carousel>
-  <slider>
-    <img src="http://placehold.it/1200x400?text=one">
-      <div class="carousel-caption">
+    <pre><code class="language-markup">&lt;carousel&gt;
+  &lt;slider&gt;
+    &lt;img src="http://placehold.it/1200x400?text=one"&gt;
+      &lt;div class="carousel-caption"&gt;
        ...
-     </div>
-  </slider>
-  <slider>
-    <img src="http://placehold.it/1200x400?text=two">
-  </slider>
-  <slider>
-    <img src="http://placehold.it/1200x400?text=three">
-  </slider>
-</carousel>
-</script></code></pre>
+     &lt;/div&gt;
+  &lt;/slider&gt;
+  &lt;slider&gt;
+    &lt;img src="http://placehold.it/1200x400?text=two"&gt;
+  &lt;/slider&gt;
+  &lt;slider&gt;
+    &lt;img src="http://placehold.it/1200x400?text=three"&gt;
+  &lt;/slider&gt;
+&lt;/carousel&gt;
+</code></pre>
 
   <h2>Options</h2>
   <table class="table table-bordered">

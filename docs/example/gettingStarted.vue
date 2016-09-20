@@ -18,8 +18,7 @@
       </ul>
     </div>
     <h2>CommonJS</h2>
-    <pre><code class="language-javascript">
-$ npm install vue-strap
+    <pre><code class="language-javascript">$ npm install vue-strap
 
 var alert = require('vue-strap/lib/alert');
 // or
@@ -29,11 +28,9 @@ new Vue({
   components: {
     'alert': alert
   }
-})
-    </code></pre>
+})</code></pre>
     <h2>ES6</h2>
-    <pre><code class="language-javascript">
-$ npm install vue-strap
+    <pre><code class="language-javascript">$ npm install vue-strap
 
 import alert from 'vue-strap/src/alert'
 // or
@@ -43,8 +40,7 @@ new Vue({
   components: {
     alert
   }
-})
-    </code></pre>
+})</code></pre>
     <h2>Browser globals</h2>
     <p>
       The <code>dist</code> folder contains <code>vue-strap.js</code> and <code>vue-strap.js</code> with

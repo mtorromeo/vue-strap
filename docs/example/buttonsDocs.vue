@@ -33,25 +33,24 @@ Radio value: {{radioValue}}
       </p>
     </div>
 
-    <pre><code class="language-markup"><script type="language-mark-up">
-<checkbox-group v-model="checkboxValue">
-  <checkbox value="left">Left</checkbox>
-  <checkbox value="middle" checked>Middle</checkbox>
-  <checkbox value="right">Right</checkbox>
-</checkbox-group>
+    <pre><code class="language-markup">&lt;checkbox-group v-model="checkboxValue"&gt;
+  &lt;checkbox value="left"&gt;Left&lt;/checkbox&gt;
+  &lt;checkbox value="middle" checked&gt;Middle&lt;/checkbox&gt;
+  &lt;checkbox value="right"&gt;Right&lt;/checkbox&gt;
+&lt;/checkbox-group&gt;
 
-<radio-group v-model="radioValue" type="primary">
-  <radio value="left">Left</radio>
-  <radio value="middle" checked>Middle</radio>
-  <radio value="right">Right</radio>
-</radio-group>
+&lt;radio-group v-model="radioValue" type="primary"&gt;
+  &lt;radio value="left"&gt;Left&lt;/radio&gt;
+  &lt;radio value="middle" checked&gt;Middle&lt;/radio&gt;
+  &lt;radio value="right"&gt;Right&lt;/radio&gt;
+&lt;/radio-group&gt;
 
-<radio-group v-model="radioValue" type="success">
-  <radio value="left">Left</radio>
-  <radio value="middle" checked>Middle</radio>
-  <radio value="right">Right</radio>
-</radio-group>
-</script></code></pre>
+&lt;radio-group v-model="radioValue" type="success"&gt;
+  &lt;radio value="left"&gt;Left&lt;/radio&gt;
+  &lt;radio value="middle" checked&gt;Middle&lt;/radio&gt;
+  &lt;radio value="right"&gt;Right&lt;/radio&gt;
+&lt;/radio-group&gt;
+</code></pre>
 
     <h2>Group options</h2>
     <table class="table table-bordered">

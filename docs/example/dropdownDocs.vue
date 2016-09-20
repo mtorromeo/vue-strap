@@ -60,20 +60,20 @@
       </tab>
 
       <tab header="Markup">
-        <pre><code class="language-markup"><script type="language-mark-up"><dropdown>
-  <button type="button" class="btn btn-default" data-toggle="dropdown">
+        <pre><code class="language-markup">&lt;dropdown&gt;
+  &lt;button type="button" class="btn btn-default" data-toggle="dropdown"&gt;
     Action
-    <span class="caret"></span>
-  </button>
-  <ul slot="dropdown-menu" class="dropdown-menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
-</dropdown>
-</script></code></pre>
+    &lt;span class="caret"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+  &lt;ul slot="dropdown-menu" class="dropdown-menu"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Action&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Another action&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Something else here&lt;/a&gt;&lt;/li&gt;
+    &lt;li role="separator" class="divider"&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Separated link&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/dropdown&gt;
+</code></pre>
       </tab>
 
       <tab header="Usage">

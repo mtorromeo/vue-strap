@@ -40,15 +40,14 @@
         <input type="text" class="form-control" placeholder="Focus">
       </popover>
     </div>
-    <pre><code class="language-markup"><script type="language-mark-up">
-<popover
+    <pre><code class="language-markup">&lt;popover
   effect="fade"
   placement="bottom"
   title="Title"
   content="Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod">
-  <button class="btn btn-default">Popover on bottom</button>
-</popover>
-</script></code></pre>
+  &lt;button class="btn btn-default">Popover on bottom&lt;/button>
+&lt;/popover>
+</code></pre>
   <h2>Options</h2>
   <table class="table table-bordered">
     <thead>

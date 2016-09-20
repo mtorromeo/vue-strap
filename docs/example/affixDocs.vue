@@ -9,17 +9,16 @@
         </tooltip>
       </h3>
     </div>
-    <pre><code class="language-markup"><script type="language-mark-up">
-<affix offset="">
-  <nav class="sidebar">
-    <ul>
-      <li>...</li>
-      <li>...</li>
-      <li>...</li>
-    </ul>
-  </nav>
-</affix>
-</script></code></pre>
+    <pre><code class="language-markup">&lt;affix offset=""&gt;
+  &lt;nav class="sidebar"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;...&lt;/li&gt;
+      &lt;li&gt;...&lt;/li&gt;
+      &lt;li&gt;...&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/affix&gt;
+</code></pre>
     <h2>Options</h2>
     <table class="table table-bordered">
       <thead>

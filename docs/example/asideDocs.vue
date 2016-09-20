@@ -30,22 +30,22 @@
         </div>
       </bs-aside>
     </div>
-    <pre><code class="language-markup"><script type="language-mark-up">
-<button
+    <pre><code class="language-markup">&lt;button
 class="btn btn-success btn-lg"
-@click="showRight = true">Show Aside on right</button>
+@click="showRight = true"&gt;Show Aside on right&lt;/button&gt;
 
-<bs-aside :show="showRight" @close="showRight = false" placement="right" header="Title" :width="350">
+&lt;bs-aside :show="showRight" @close="showRight = false" placement="right" header="Title" :width="350"&gt;
 ...
-</bs-aside>
+&lt;/bs-aside&gt;
 
-<button
+&lt;button
 class="btn btn-danger btn-lg"
-@click="showLeft = true">Show Aside on left</button>
+@click="showLeft = true"&gt;Show Aside on left&lt;/button&gt;
 
-<bs-aside :show="showLeft" @close="showLeft = false" placement="left" header="Title" :width="350">
+&lt;bs-aside :show="showLeft" @close="showLeft = false" placement="left" header="Title" :width="350"&gt;
 ...
-</bs-aside></script></code></pre>
+&lt;/bs-aside&gt;
+</code></pre>
 
     <h2>Options</h2>
     <table class="table table-bordered">

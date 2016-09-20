@@ -37,35 +37,33 @@
         :on-hit="githubCallback"
       ></typeahead>
     </div>
-    <pre><code class="language-markup"><script type="language-mark-up">
-<h4>Static arrays</h4>
-<typeahead
+    <pre><code class="language-markup">&lt;h4&gt;Static arrays&lt;/h4&gt;
+&lt;typeahead
   :data="USstate"
-  placeholder="USA states">
-</typeahead>
+  placeholder="USA states"&gt;
+&lt;/typeahead&gt;
 
-<h4>Asynchronous results</h4>
-  <typeahead
+&lt;h4&gt;Asynchronous results&lt;/h4&gt;
+  &lt;typeahead
     placeholder="Address, async via maps.googleapis.com"
     key="results"
     src="https://maps.googleapis.com/maps/api/geocode/json?address="
     template-name="async"
     :template="asyncTemplate"
-    :on-hit="googleCallback">
-</typeahead>
+    :on-hit="googleCallback"&gt;
+&lt;/typeahead&gt;
 
-<h4>Custom templates for results</h4>
-  <typeahead
+&lt;h4&gt;Custom templates for results&lt;/h4&gt;
+  &lt;typeahead
     placeholder="Github users, async via api.github.com"
     key="items"
     src="https://api.github.com/search/users?q="
     template-name="typeahead-github-template"
     :template="githubTemplate"
-    :on-hit="githubCallback">
-</typeahead>
-  </script></code></pre>
-    <pre><code class="language-javascript"><script type="language-javascript">
-new Vue {
+    :on-hit="githubCallback"&gt;
+&lt;/typeahead&gt;
+</code></pre>
+    <pre><code class="language-javascript"><script type="language-javascript">new Vue {
   components: {
     typeahead
   },
@@ -88,7 +86,7 @@ new Vue {
     }
   }
 }
-    </script></code></pre>
+</script></code></pre>
 
     <h2>Options</h2>
     <table class="table table-bordered">
