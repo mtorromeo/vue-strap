@@ -3,7 +3,7 @@
     <div :class="{
       'input-group': (showResetButton || showPickerButton) && type != 'hidden'
     }">
-      <input ref="input" :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="formattedValue">
+      <input ref="input" :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="formattedValue" @keydown.up.prevent="incrementDay" @keydown.down.prevent="decrementDay" @keydown.33.prevent="incrementMonth" @keydown.34.prevent="decrementMonth">
       <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
         &times;
       </a>
@@ -399,6 +399,26 @@
         }
 
         return dict[month];
+      },
+      incrementDay() {
+        const newdate = new Date(this.date);
+        newdate.setDate(newdate.getDate() + 1);
+        this.date = newdate;
+      },
+      decrementDay() {
+        const newdate = new Date(this.date);
+        newdate.setDate(newdate.getDate() - 1);
+        this.date = newdate;
+      },
+      incrementMonth() {
+        const newdate = new Date(this.date);
+        newdate.setMonth(newdate.getMonth() + 1);
+        this.date = newdate;
+      },
+      decrementMonth() {
+        const newdate = new Date(this.date);
+        newdate.setMonth(newdate.getMonth() - 1);
+        this.date = newdate;
       },
     },
   }
