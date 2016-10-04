@@ -194,8 +194,8 @@
           const preMonth = this.getYearMonth(this.year, this.month - 1);
           const prevMonthDayCount = this.getDayCount(preMonth.year, preMonth.month);
 
-          for (let i = 0; i < numDaysOfPrevMonth; i++) {
-            const dayText = prevMonthDayCount - numDaysOfPrevMonth + i;
+          for (let i = numDaysOfPrevMonth - 1; i >= 0; i--) {
+            const dayText = prevMonthDayCount - i;
             dateRange.push({
               text: dayText,
               date: new Date(preMonth.year, preMonth.month, dayText),
