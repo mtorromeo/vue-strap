@@ -3,7 +3,7 @@
         <div :class="{
             'input-group': (showResetButton || showPickerButton) && type != 'hidden'
         }">
-            <input v-el:input :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="formattedValue" @keydown.up.prevent="incrementDay" @keydown.down.prevent="decrementDay" @keydown.33.prevent="incrementMonth" @keydown.34.prevent="decrementMonth">
+            <input v-el:input :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="formattedValue" @keydown.up.prevent="day = day + 1" @keydown.down.prevent="day = day - 1" @keydown.33.prevent="month = month + 1" @keydown.34.prevent="month = month - 1">
             <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
                 &times;
             </a>
@@ -19,8 +19,8 @@
             <div class="datepicker-inner" v-show="displayDayView">
                 <div class="datepicker-body">
                     <div class="datepicker-ctrl">
-                        <span class="month-btn datepicker-preBtn" @click="preNextMonthClick(0)">&lt;</span>
-                        <span class="month-btn datepicker-nextBtn" @click="preNextMonthClick(1)">&gt;</span>
+                        <span class="month-btn datepicker-preBtn" @click="month = month - 1">&lt;</span>
+                        <span class="month-btn datepicker-nextBtn" @click="month = month + 1">&gt;</span>
                         <p @click="switchMonthView">{{stringifyDayHeader(date)}}</p>
                     </div>
                     <div class="datepicker-weekRange">
@@ -35,8 +35,8 @@
             <div class="datepicker-inner" v-show="displayMonthView">
                 <div class="datepicker-body">
                     <div class="datepicker-ctrl">
-                        <span class="month-btn datepicker-preBtn" @click="preNextYearClick(0)">&lt;</span>
-                        <span class="month-btn datepicker-nextBtn" @click="preNextYearClick(1)">&gt;</span>
+                        <span class="month-btn datepicker-preBtn" @click="year = year - 1">&lt;</span>
+                        <span class="month-btn datepicker-nextBtn" @click="year = year + 1">&gt;</span>
                         <p @click="switchDecadeView">{{stringifyYearHeader(date)}}</p>
                     </div>
                     <div class="datepicker-monthRange">
@@ -52,8 +52,8 @@
             <div class="datepicker-inner" v-show="displayYearView">
                 <div class="datepicker-body">
                     <div class="datepicker-ctrl">
-                        <span class="month-btn datepicker-preBtn" @click="preNextDecadeClick(0)">&lt;</span>
-                        <span class="month-btn datepicker-nextBtn" @click="preNextDecadeClick(1)">&gt;</span>
+                        <span class="month-btn datepicker-preBtn" @click="year = year - 10">&lt;</span>
+                        <span class="month-btn datepicker-nextBtn" @click="year = year + 10">&gt;</span>
                         <p>{{stringifyDecadeHeader(date)}}</p>
                     </div>
                     <div class="datepicker-monthRange decadeRange">
@@ -157,6 +157,36 @@
                     this.value = this.stringify(value);
                 },
             },
+            year: {
+                get() {
+                    return this.date.getFullYear();
+                },
+                set(value) {
+                    const newdate = new Date(this.date);
+                    newdate.setYear(value);
+                    this.date = newdate;
+                },
+            },
+            month: {
+                get() {
+                    return this.date.getMonth();
+                },
+                set(value) {
+                    const newdate = new Date(this.date);
+                    newdate.setMonth(value);
+                    this.date = newdate;
+                },
+            },
+            day: {
+                get() {
+                    return this.date.getDate();
+                },
+                set(value) {
+                    const newdate = new Date(this.date);
+                    newdate.setDate(value);
+                    this.date = newdate;
+                },
+            },
             formattedValue() {
                 if (!this.value) {
                     return '';
@@ -247,15 +277,6 @@
 
                 return dateRange;
             },
-            year() {
-                return this.date.getFullYear();
-            },
-            month() {
-                return this.date.getMonth();
-            },
-            day() {
-                return this.date.getDate();
-            },
         },
         methods: {
             close(e) {
@@ -290,29 +311,6 @@
                     this.date = new Date();
                 } else {
                     this.value = '';
-                }
-            },
-            preNextDecadeClick(flag) {
-                if (flag === 0) {
-                    this.date = new Date(this.year - 10, this.month, this.day);
-                } else {
-                    this.date = new Date(this.year + 10, this.month, this.day);
-                }
-            },
-            preNextMonthClick(flag) {
-                if (flag === 0) {
-                    const preMonth = this.getYearMonth(this.year, this.month - 1);
-                    this.date = new Date(preMonth.year, preMonth.month, this.day);
-                } else {
-                    const nextMonth = this.getYearMonth(this.year, this.month + 1);
-                    this.date = new Date(nextMonth.year, nextMonth.month, this.day);
-                }
-            },
-            preNextYearClick(flag) {
-                if (flag === 0) {
-                    this.date = new Date(this.year - 1, this.month, this.day);
-                } else {
-                    this.date = new Date(this.year + 1, this.month, this.day);
                 }
             },
             yearSelect(year) {
@@ -403,26 +401,6 @@
                 }
 
                 return dict[month];
-            },
-            incrementDay() {
-                const newdate = new Date(this.date);
-                newdate.setDate(newdate.getDate() + 1);
-                this.date = newdate;
-            },
-            decrementDay() {
-                const newdate = new Date(this.date);
-                newdate.setDate(newdate.getDate() - 1);
-                this.date = newdate;
-            },
-            incrementMonth() {
-                const newdate = new Date(this.date);
-                newdate.setMonth(newdate.getMonth() + 1);
-                this.date = newdate;
-            },
-            decrementMonth() {
-                const newdate = new Date(this.date);
-                newdate.setMonth(newdate.getMonth() - 1);
-                this.date = newdate;
             },
         },
     }
