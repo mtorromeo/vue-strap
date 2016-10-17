@@ -4,11 +4,11 @@
             'input-group': (showResetButton || showPickerButton) && type != 'hidden'
         }">
             <input v-el:input :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="formattedValue" @keydown.up.prevent="day = day + 1" @keydown.down.prevent="day = day - 1" @keydown.33.prevent="month = month + 1" @keydown.34.prevent="month = month - 1">
-            <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
+            <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled}" @click.prevent="clear">
                 &times;
             </a>
             <a v-if="showPickerButton" :class="{
-                disabled: disabled !== undefined,
+                disabled: disabled,
                 'input-group-addon': type != 'hidden'
             }" @click.prevent="show" href="javascript:void(0)">
                 <span :class="[iconset, iconset + '-calendar']"></span>
@@ -75,8 +75,14 @@
             name: String,
             tabindex: String,
             placeholder: String,
-            disabled: String,
-            required: String,
+            required: {
+                type: Boolean,
+                default: false,
+            },
+            disabled: {
+                type: Boolean,
+                default: false,
+            },
             value: {
                 type: String,
                 twoWay: true,
@@ -289,7 +295,7 @@
                 this.displayDayView = this.displayMonthView = this.displayYearView = false;
             },
             toggle(e) {
-                if (e && this.disabled !== undefined) {
+                if (e && this.disabled) {
                     return;
                 }
                 if (e.target.nodeName == 'INPUT' && this.showPickerButton) {
@@ -298,16 +304,16 @@
                 this.displayDayView = !(this.displayMonthView || this.displayYearView || this.displayDayView);
             },
             show(e) {
-                if (e && this.disabled !== undefined) {
+                if (e && this.disabled) {
                     return;
                 }
                 this.displayDayView = true;
             },
             clear(e) {
-                if (e && this.disabled !== undefined) {
+                if (e && this.disabled) {
                     return;
                 }
-                if (this.required !== undefined) {
+                if (this.required) {
                     this.date = new Date();
                 } else {
                     this.value = '';
