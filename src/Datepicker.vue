@@ -3,7 +3,7 @@
     <div :class="{
       'input-group': (showResetButton || showPickerButton) && type != 'hidden'
     }">
-      <input ref="input" :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" v-model="formattedValue" @keydown.up.prevent="incrementDay" @keydown.down.prevent="decrementDay" @keydown.33.prevent="incrementMonth" @keydown.34.prevent="decrementMonth">
+      <input ref="input" :name="name" :tabindex="tabindex" :placeholder="placeholder" :disabled="disabled" :required="required" class="form-control datepicker-input" :type="type" @focus="show" @blur="close" :value="formattedValue" @input="formattedValue = $event.target.value" @keydown.up.prevent="incrementDay" @keydown.down.prevent="decrementDay" @keydown.33.prevent="incrementMonth" @keydown.34.prevent="decrementMonth">
       <a v-if="showResetButton && type != 'hidden'" class="input-group-addon close" :class="{disabled: disabled !== undefined}" @click.prevent="clear">
         &times;
       </a>

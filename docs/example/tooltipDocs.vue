@@ -18,7 +18,7 @@
       <h4>Triger</h4>
       <p>
         <tooltip trigger="click"
-        effect="scale" content="Lorem ipsum dolor sit amet" placement="top" trigger="hover">
+        effect="scale" content="Lorem ipsum dolor sit amet" placement="top">
             <button class="btn btn-default ">Click</button>
         </tooltip>
       </p>
